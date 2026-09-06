@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OMEN Space — Total control over your Omen laptop</title>
 <meta name="description" content="OMEN Space is an open-source Rust and GTK4 control suite for HP Omen, Victus, and Transcend laptops on Linux.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 22,12 12,22 2,12' fill='%237B6EF6'/%3E%3C/svg%3E">
+<link rel="icon" href="images/omenspace.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -62,7 +62,7 @@
     padding: 12px 16px 12px 24px; border-radius: 999px;
   }
   .brand { display: flex; align-items: center; gap: 10px; font-family: var(--sans); font-weight: 700; font-size: 1.1rem; }
-  .brand svg { width: 20px; height: 20px; }
+  .brand img { width: 24px; height: 24px; border-radius: 0; }
   .navlinks { display: flex; align-items: center; gap: 30px; }
   .navlinks a:hover { color: var(--text); }
   @media (max-width: 768px) { .navlinks .hide-mobile { display: none; } }
@@ -70,9 +70,9 @@
   /* Buttons */
   .pill-btn {
     display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.9rem;
-    padding: 12px 24px; border-radius: 999px; white-space: nowrap; transition: all 0.3s ease;
+    padding: 12px 24px; border-radius: 999px; white-space: nowrap; transition: all 0.3s ease; cursor: pointer;
   }
-  .pill-primary { background: var(--grad); color: #000; box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3); }
+  .pill-primary { background: var(--grad); color: #000; box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3); border: none; }
   .pill-primary:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5); }
   .pill-secondary { border: 1px solid var(--glass-brd-hi); background: rgba(255,255,255,0.02); }
   .pill-secondary:hover { border-color: var(--teal); background: rgba(0, 240, 255, 0.05); }
@@ -91,9 +91,33 @@
   .hero .lede { max-width: 600px; margin: 24px auto 0; font-size: 1.15rem; }
   .cta-row { margin-top: 40px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
   
-  .hero-shot { margin: 60px auto 0; max-width: 900px; padding: 8px; }
-  .hero-shot .bar { display: flex; gap: 8px; padding: 12px; }
-  .hero-shot .bar span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  /* Carousel */
+  .hero-carousel { margin: 60px auto 0; max-width: 900px; padding: 8px; position: relative; }
+  .hero-carousel .bar { display: flex; gap: 8px; padding: 12px; }
+  .hero-carousel .bar span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+  .carousel-inner { position: relative; width: 100%; height: 450px; overflow: hidden; border-radius: 12px; }
+  .carousel-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity 0.8s ease-in-out; }
+  .carousel-img.active { opacity: 1; }
+  @media (max-width: 768px) { .carousel-inner { height: 250px; } }
+
+  /* Modal */
+  .modal {
+    display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+    justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s;
+  }
+  .modal.show { display: flex; opacity: 1; }
+  .modal-content {
+    background: var(--bg); padding: 40px 30px; border-radius: 16px; max-width: 700px; width: 90%;
+    border: 1px solid var(--glass-brd-hi); position: relative;
+    transform: translateY(-20px); transition: transform 0.3s;
+  }
+  .modal.show .modal-content { transform: translateY(0); }
+  .close-btn {
+    position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: var(--muted);
+    background: none; border: none; padding: 0; line-height: 1;
+  }
+  .close-btn:hover { color: var(--text); }
 
   /* Responsive Grids */
   section { padding: 80px 0; }
@@ -128,15 +152,11 @@
   .arch-line { width: 2px; height: 30px; background: linear-gradient(var(--teal), transparent); }
 
   /* Terminal / Install */
-  .term-glass { max-width: 700px; margin: 0 auto; padding: 4px; }
+  .term-glass { max-width: 100%; margin: 0 auto; padding: 4px; background: var(--glass); border: 1px solid var(--glass-brd); border-radius: 12px; margin-bottom: 15px; }
   .term-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; font-size: 0.85rem; color: var(--muted); border-bottom: 1px solid var(--glass-brd); }
   .term-body { font-family: var(--mono); font-size: 0.9rem; color: var(--teal); padding: 20px; word-break: break-all; white-space: pre-wrap; }
   .copy-btn { background: rgba(255,255,255,0.1); border: none; color: var(--text); padding: 6px 12px; border-radius: 6px; font-family: var(--mono); font-size: 0.8rem; cursor: pointer; transition: 0.2s; }
   .copy-btn:hover { background: var(--teal); color: #000; }
-  
-  details { max-width: 700px; margin: 30px auto 0; }
-  summary { cursor: pointer; color: var(--text); font-size: 1rem; text-align: center; font-weight: 600; padding: 10px; }
-  details .term-glass { margin-top: 20px; }
 
   /* Footer */
   footer { padding: 60px 0; text-align: center; border-top: 1px solid var(--glass-brd); margin-top: 60px; }
@@ -153,14 +173,13 @@
   <div class="wrap">
     <nav class="navpill glass">
       <a class="brand" href="#top">
-        <svg viewBox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12" fill="#7B6EF6"/></svg>
+        <img src="images/omenspace.png" alt="OMEN Space Logo">
         OMEN Space
       </a>
       <div class="navlinks">
         <a href="#features" class="hide-mobile">Features</a>
-        <a href="#screens" class="hide-mobile">Screens</a>
-        <a href="#architecture" class="hide-mobile">Architecture</a>
-        <a href="#install" class="pill-btn pill-primary">Get App</a>
+        <a href="#alternatives" class="hide-mobile">Alternatives</a>
+        <button onclick="openModal()" class="pill-btn pill-primary">Get App</button>
       </div>
     </nav>
   </div>
@@ -173,12 +192,18 @@
       <h1>Total control over your Omen laptop.</h1>
       <p class="lede">Fan curves, RGB lighting, undervolting, and GPU switching for HP Omen, Victus, and Transcend laptops — open source, Rust-native, built for Linux.</p>
       <div class="cta-row">
-        <a class="pill-btn pill-primary" href="#install">Install on Linux</a>
+        <button onclick="openModal()" class="pill-btn pill-primary">Install on Linux</button>
         <a class="pill-btn pill-secondary" href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener">View on GitHub</a>
       </div>
-      <div class="hero-shot glass">
+      
+      <!-- Carousel -->
+      <div class="hero-carousel glass">
         <div class="bar"><span></span><span></span><span></span></div>
-        <img src="images/perf.png" alt="OMEN Space fan curve editor" loading="lazy">
+        <div class="carousel-inner">
+          <img src="images/perf.png" alt="Fan curve editor" class="carousel-img active" loading="lazy">
+          <img src="images/rgb.png" alt="RGB lighting" class="carousel-img" loading="lazy">
+          <img src="images/undervolt.png" alt="Undervolting" class="carousel-img" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
@@ -232,25 +257,22 @@
     </div>
   </section>
 
-  <section id="screens">
+  <!-- New Section: Alternatives -->
+  <section id="alternatives">
     <div class="wrap">
       <div class="section-head">
-        <h2>Inside the interface</h2>
-        <p>Native GTK4 and Libadwaita for a seamless modern Linux experience.</p>
+        <h2>Omen ve Victus Cihazlar İçin Farklı Çözümler</h2>
+        <p>Açık kaynak topluluğu tarafından geliştirilen diğer güçlü alternatifler.</p>
       </div>
-      <div class="auto-grid">
-        <figure class="shot-card glass glass-hover">
-          <img src="images/rgb.png" alt="RGB keyboard lighting studio" loading="lazy">
-          <figcaption><b>RGB Studio</b> 4-zone and per-key effects.</figcaption>
-        </figure>
-        <figure class="shot-card glass glass-hover">
-          <img src="images/undervolt.png" alt="Ryzen SMU" loading="lazy">
-          <figcaption><b>Undervolting</b> MSR offsets, TCC limits.</figcaption>
-        </figure>
-        <figure class="shot-card glass glass-hover">
-          <img src="images/mux.png" alt="GPU MUX switch" loading="lazy">
-          <figcaption><b>MUX Switch</b> Native Optimus routing.</figcaption>
-        </figure>
+      <div class="auto-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+        <div class="feat-card glass glass-hover">
+          <h3>OpenOmen</h3>
+          <p>Omen cihazlar için hafif ve topluluk odaklı, temel donanım yönetimini sağlayan açık kaynaklı bir alternatif.</p>
+        </div>
+        <div class="feat-card glass glass-hover">
+          <h3>OmenCore</h3>
+          <p>Gelişmiş çekirdek seviyesi entegrasyonu ve modüler yapısıyla daha spesifik ihtiyaçlara yönelik bir kontrol mimarisi.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -276,40 +298,13 @@
       </div>
     </div>
   </section>
-
-  <section id="install">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Install in one line</h2>
-        <p>The installer detects your distro and handles dependencies automatically.</p>
-      </div>
-      <div class="term-glass glass">
-        <div class="term-bar"><span>Terminal</span><button class="copy-btn" onclick="copyInstall(this)">Copy</button></div>
-        <div class="term-body">$ curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash</div>
-      </div>
-      
-      <details>
-        <summary>View manual install methods</summary>
-        <div class="term-glass glass">
-          <div class="term-bar"><span>Git Clone</span></div>
-          <div class="term-body">$ git clone https://github.com/yunusemreyl/omen-space.git
-$ cd omen-space && chmod +x setup.sh
-$ sudo ./setup.sh install</div>
-        </div>
-        <div class="term-glass glass">
-          <div class="term-bar"><span>Arch Linux (AUR)</span></div>
-          <div class="term-body">$ makepkg -si</div>
-        </div>
-      </details>
-    </div>
-  </section>
   
   <section>
     <div class="wrap">
       <div class="section-head" style="margin-bottom: 0;">
         <h2>Ready to take control?</h2>
         <div class="cta-row">
-          <a class="pill-btn pill-primary" href="#install" style="font-size: 1.1rem; padding: 16px 32px;">Install OMEN Space</a>
+          <button onclick="openModal()" class="pill-btn pill-primary" style="font-size: 1.1rem; padding: 16px 32px;">Install OMEN Space</button>
         </div>
       </div>
     </div>
@@ -329,10 +324,68 @@ $ sudo ./setup.sh install</div>
   </div>
 </footer>
 
+<!-- Install Modal -->
+<div id="installModal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">&times;</button>
+    <h2 style="margin-bottom: 20px;">Install OMEN Space</h2>
+    
+    <div class="term-glass">
+      <div class="term-bar"><span>Recommended (Auto Installer)</span><button class="copy-btn" onclick="copyInstall(this, 'cmd1')">Copy</button></div>
+      <div class="term-body" id="cmd1">$ curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash</div>
+    </div>
+
+    <div class="term-glass">
+      <div class="term-bar"><span>Git Clone (Manual)</span><button class="copy-btn" onclick="copyInstall(this, 'cmd2')">Copy</button></div>
+      <div class="term-body" id="cmd2">$ git clone https://github.com/yunusemreyl/omen-space.git
+$ cd omen-space && chmod +x setup.sh
+$ sudo ./setup.sh install</div>
+    </div>
+
+    <div class="term-glass">
+      <div class="term-bar"><span>Arch Linux (AUR)</span><button class="copy-btn" onclick="copyInstall(this, 'cmd3')">Copy</button></div>
+      <div class="term-body" id="cmd3">$ makepkg -si</div>
+    </div>
+  </div>
+</div>
+
 <script>
-  function copyInstall(btn) {
-    const cmd = "curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash";
-    navigator.clipboard.writeText(cmd).then(() => {
+  // Carousel Script
+  const carouselImages = document.querySelectorAll('.carousel-img');
+  let currentImgIndex = 0;
+  
+  if(carouselImages.length > 0) {
+    setInterval(() => {
+      carouselImages[currentImgIndex].classList.remove('active');
+      currentImgIndex = (currentImgIndex + 1) % carouselImages.length;
+      carouselImages[currentImgIndex].classList.add('active');
+    }, 4000); // Change image every 4 seconds
+  }
+
+  // Modal Scripts
+  const modal = document.getElementById('installModal');
+  
+  function openModal() {
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  }
+  
+  function closeModal() {
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modal on outside click
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      closeModal();
+    }
+  }
+
+  // Copy Install Commands
+  function copyInstall(btn, elementId) {
+    const cmdText = document.getElementById(elementId).innerText.replace(/\$ /g, ''); // Remove the $ prompts for copying
+    navigator.clipboard.writeText(cmdText).then(() => {
       const old = btn.textContent;
       btn.textContent = "Copied!";
       setTimeout(() => { btn.textContent = old; }, 1500);
