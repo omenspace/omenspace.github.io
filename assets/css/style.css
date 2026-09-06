@@ -240,9 +240,6 @@ a {
 
 /* Hide bottom-nav on desktop */
 @media (min-width: 769px) {
-  .bottom-nav {
-    display: none;
-  }
 }
 
 /* Buttons */
@@ -955,54 +952,11 @@ footer {
     display: none;
   }
   
-  .bottom-nav {
-    display: flex;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: max-content;
-    gap: 20px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 100px;
-    justify-content: center;
-    padding: 12px 24px;
-    z-index: 1000;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
   
-  .bottom-nav.hide {
-    transform: translate(-50%, 150%);
-    opacity: 0;
-  }
   
-  .bottom-nav-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    padding: 8px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-  }
   
-  .bottom-nav-item span {
-    display: none; /* Sadece ikon kalsın */
-  }
   
-  .bottom-nav-item:hover, .bottom-nav-item:active {
-    color: var(--text-main);
-    background: var(--accent-purple-glow);
-  }
   
-  .bottom-nav-item svg {
-    width: 24px;
-    height: 24px;
-  }
   
   body {
     padding-bottom: 90px;
@@ -1097,4 +1051,50 @@ footer {
   
   .mt-60 { margin-top: 30px; }
   .mt-20 { margin-top: 15px; }
+
+.hamburger-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 10px;
+}
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    border-bottom: 1px solid var(--glass-border);
+    transform: translateY(-150%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+  }
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  .nav-links a {
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+  }
+}
 }

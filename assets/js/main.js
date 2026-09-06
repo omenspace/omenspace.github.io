@@ -95,9 +95,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Sticky Navbar and Bottom Nav Scroll Logic
+    // Sticky Navbar & Mobile Menu Logic
     const navbar = document.getElementById('navbar');
-    const bottomNav = document.querySelector('.bottom-nav');
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (hamburgerBtn && navLinks) {
+        hamburgerBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+
     let lastScrollY = window.scrollY;
     
     window.addEventListener('scroll', () => {
@@ -108,16 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.remove('scrolled');
         }
 
-        // Bottom Nav Hide/Show
-        if (bottomNav) {
-            if (window.scrollY > lastScrollY && window.scrollY > 100) {
-                // Scrolling down
-                bottomNav.classList.add('hide');
-            } else {
-                // Scrolling up
-                bottomNav.classList.remove('hide');
-            }
-        }
         lastScrollY = window.scrollY;
     });
 
