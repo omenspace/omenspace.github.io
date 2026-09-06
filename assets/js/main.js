@@ -97,22 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sticky Navbar & Mobile Menu Logic
     const navbar = document.getElementById('navbar');
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const navLinks = document.querySelector('.nav-links');
     
-    if (hamburgerBtn && navLinks) {
-        hamburgerBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-    }
-
     let lastScrollY = window.scrollY;
     
     window.addEventListener('scroll', () => {

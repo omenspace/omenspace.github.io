@@ -978,6 +978,7 @@ footer {
   }
   
   /* Layout Scaling for Mobile */
+  .nav-links { display: none; }
   .hero {
     padding: 100px 5% 40px;
     min-height: auto;
@@ -1052,49 +1053,3 @@ footer {
   .mt-60 { margin-top: 30px; }
   .mt-20 { margin-top: 15px; }
 
-.hamburger-btn {
-  display: none;
-  background: transparent;
-  border: none;
-  color: var(--text-main);
-  cursor: pointer;
-  padding: 5px;
-  margin-left: 10px;
-}
-@media (max-width: 768px) {
-  .hamburger-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    flex-direction: column;
-    padding: 20px;
-    gap: 15px;
-    border-bottom: 1px solid var(--glass-border);
-    transform: translateY(-150%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: -1;
-  }
-  .nav-links.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
-  .nav-links a {
-    font-size: 1.1rem;
-    text-align: center;
-    width: 100%;
-    padding: 10px 0;
-  }
-}
-}
