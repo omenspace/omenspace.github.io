@@ -237,154 +237,6 @@ a {
     color: var(--text-main);
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  
-  .bottom-nav {
-    display: flex;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: max-content;
-    gap: 20px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 100px;
-    justify-content: center;
-    padding: 12px 24px;
-    z-index: 1000;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
-  
-  .bottom-nav.hide {
-    transform: translate(-50%, 150%);
-    opacity: 0;
-  }
-  
-  .bottom-nav-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    padding: 8px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-  }
-  
-  .bottom-nav-item span {
-    display: none; /* Sadece ikon kalsın */
-  }
-  
-  .bottom-nav-item:hover, .bottom-nav-item:active {
-    color: var(--text-main);
-    background: var(--accent-purple-glow);
-  }
-  
-  .bottom-nav-item svg {
-    width: 24px;
-    height: 24px;
-  }
-  
-  body {
-    padding-bottom: 90px;
-  }
-  
-  /* Make top navbar items smaller to fit perfectly */
-  .navbar .btn-primary {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-  }
-  
-  .navbar .logo {
-    font-size: 1.2rem;
-  }
-  
-  .navbar .logo svg {
-    width: 24px;
-    height: 24px;
-  }
-  
-  /* Layout Scaling for Mobile */
-  .hero {
-    padding: 100px 5% 40px;
-    min-height: auto;
-  }
-  
-  .hero h1 {
-    font-size: clamp(2rem, 8vw, 2.5rem);
-    margin-bottom: 10px;
-  }
-  
-  .hero p {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-  }
-
-  /* Shrink buttons for mobile */
-  .btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
-
-  .hero-cta {
-    gap: 12px;
-  }
-  
-  section {
-    padding: 40px 5%;
-  }
-  
-  .section-header {
-    margin-bottom: 40px;
-  }
-  
-  .section-title {
-    font-size: clamp(1.8rem, 7vw, 2.5rem);
-    margin-bottom: 12px;
-  }
-  
-  .section-subtitle {
-    font-size: 0.95rem;
-  }
-  
-  .card {
-    padding: 24px;
-    border-radius: 16px;
-  }
-  
-  .card h3 {
-    font-size: 1.25rem;
-  }
-  
-  .card p {
-    font-size: 0.95rem;
-  }
-  
-  .showcase-text h2 {
-    font-size: 2rem;
-  }
-  
-  .showcase-text p {
-    font-size: 1rem;
-  }
-  
-  .showcase-list li {
-    font-size: 0.95rem;
-  }
-  
-  .grid-2, .grid-3 {
-    gap: 24px;
-  }
-  
-  .mt-60 { margin-top: 30px; }
-  .mt-20 { margin-top: 15px; }
-}
 
 /* Hide bottom-nav on desktop */
 @media (min-width: 769px) {
@@ -1095,4 +947,154 @@ footer {
 /* Make images indicate they are clickable */
 .card-image-container img, .showcase-image img, .hero-image {
   cursor: zoom-in;
+}
+
+/* Moved Mobile Media Query to bottom for correct specificity */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    gap: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    justify-content: center;
+    padding: 12px 24px;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  
+  .bottom-nav.hide {
+    transform: translate(-50%, 150%);
+    opacity: 0;
+  }
+  
+  .bottom-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .bottom-nav-item span {
+    display: none; /* Sadece ikon kalsın */
+  }
+  
+  .bottom-nav-item:hover, .bottom-nav-item:active {
+    color: var(--text-main);
+    background: var(--accent-purple-glow);
+  }
+  
+  .bottom-nav-item svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  body {
+    padding-bottom: 90px;
+  }
+  
+  /* Make top navbar items smaller to fit perfectly */
+  .navbar .btn-primary {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .navbar .logo {
+    font-size: 1.2rem;
+  }
+  
+  .navbar .logo svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Layout Scaling for Mobile */
+  .hero {
+    padding: 100px 5% 40px;
+    min-height: auto;
+  }
+  
+  .hero h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    margin-bottom: 8px;
+  }
+  
+  .hero p {
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+  }
+
+  /* Shrink buttons for mobile */
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+  }
+
+  .hero-cta {
+    gap: 8px;
+  }
+  
+  section {
+    padding: 30px 5%;
+  }
+  
+  .section-header {
+    margin-bottom: 25px;
+  }
+  
+  .section-title {
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    margin-bottom: 8px;
+  }
+  
+  .section-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  .card h3 {
+    font-size: 1rem;
+  }
+  
+  .card p {
+    font-size: 0.8rem;
+  }
+  
+  .showcase-text h2 {
+    font-size: 1.5rem;
+  }
+  
+  .showcase-text p {
+    font-size: 0.8rem;
+  }
+  
+  .showcase-list li {
+    font-size: 0.8rem;
+  }
+  
+  .grid-2, .grid-3 {
+    gap: 16px;
+  }
+  
+  .mt-60 { margin-top: 30px; }
+  .mt-20 { margin-top: 15px; }
 }
