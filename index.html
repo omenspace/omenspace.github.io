@@ -1,162 +1,479 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OMEN Space | Üstün Kontrol</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg-dark: #050508;
-    --bg-light: #0a0a0f;
-    --text: #ffffff;
-    --text-muted: #a1a1aa;
-    --accent: #8A2BE2;
-    --accent-hover: #00F0FF;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text); overflow-x: hidden; }
-  h1, h2, h3 { font-family: 'Sora', sans-serif; }
-  a { text-decoration: none; color: inherit; }
-  
-  /* Navbar */
-  .navbar {
-    position: fixed; top: 0; width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
-    z-index: 1000; transition: all 0.4s ease;
-  }
-  .navbar.scrolled { background: rgba(5, 5, 8, 0.9); backdrop-filter: blur(15px); padding: 15px 50px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .logo { font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
-  .nav-links { display: flex; gap: 40px; }
-  .nav-links a { font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
-  .nav-links a:hover { color: var(--accent-hover); }
-  .btn-primary { background: var(--accent); padding: 10px 24px; border-radius: 30px; font-weight: 600; transition: 0.3s; }
-  .btn-primary:hover { background: var(--accent-hover); color: #000; }
-
-  /* Hero Section */
-  .hero {
-    height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; background: radial-gradient(circle at center, rgba(138,43,226,0.15) 0%, var(--bg-dark) 70%);
-    padding: 0 20px;
-  }
-  .hero h1 { font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; letter-spacing: -2px; }
-  .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
-
-  /* Sections */
-  section { padding: 120px 10%; }
-  .bg-alt { background: var(--bg-light); }
-  .section-title { font-size: 2.5rem; margin-bottom: 60px; text-align: center; }
-
-  /* Grid Layout (Wix Style Services/Features) */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-  
-  .card {
-    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
-    padding: 40px; border-radius: 20px; transition: transform 0.4s;
-  }
-  .card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.1); }
-  .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--accent-hover); }
-  
-  .img-placeholder { width: 100%; height: 400px; background: rgba(255,255,255,0.05); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
-
-  /* Scroll Animations */
-  .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
-  .reveal.active { opacity: 1; transform: translateY(0); }
-
-  /* Footer */
-  footer { padding: 40px 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMEN Space | Üstün Donanım Kontrolü</title>
+    <meta name="description" content="HP Omen ve Victus cihazlar için Linux üzerinde geliştirilmiş tam kapsamlı donanım kontrol merkezi.">
+    <!-- Meta tags for SEO -->
+    <meta property="og:title" content="OMEN Space">
+    <meta property="og:description" content="Linux için HP Omen ve Victus Donanım Kontrol Merkezi">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/omenspace.png" type="image/png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar" id="navbar">
-    <div class="logo">
-      <svg width="24" height="24" viewBox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12" fill="#00F0FF"/></svg>
-      OMEN Space
+    <!-- Background Glow Effect -->
+    <div class="bg-glow"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 12L12 22L22 12L12 2Z" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M12 6L6 12L12 18L18 12L12 6Z" fill="url(#logo-grad)" fill-opacity="0.2" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="logo-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00F5FF"/>
+                        <stop offset="1" stop-color="#9D4EDD"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            OMEN Space
+        </a>
+        <div class="nav-links">
+            <a href="#about"><span data-i18n="nav.about">Nedir?</span></a>
+            <a href="#features"><span data-i18n="nav.features">Özellikler</span></a>
+            <a href="#alternatives"><span data-i18n="nav.alternatives">Alternatifler</span></a>
+            <a href="#contact"><span data-i18n="nav.contact">İletişim</span></a>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <select id="lang-switcher" style="background: transparent; border: none; color: var(--text-main); margin-right: 15px; font-family: inherit; font-size: 0.9rem; cursor: pointer; outline: none;">
+                <option value="en">EN</option>
+                <option value="tr">TR</option>
+                <option value="de">DE</option>
+                <option value="hi">HI</option>
+                <option value="zh">ZH</option>
+            </select>
+            <button id="theme-toggle" aria-label="Toggle Theme" style="background: transparent; padding: 10px; margin-right: 15px; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; color: var(--text-main); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                <svg id="theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg id="theme-icon-sun" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+            <a href="#" class="btn btn-primary open-install"><span data-i18n="nav.install">Hemen İndir</span></a>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#about" class="bottom-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span data-i18n="nav.about">Nedir?</span>
+        </a>
+        <a href="#features" class="bottom-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span data-i18n="nav.features">Özellikler</span>
+        </a>
+        <a href="#alternatives" class="bottom-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            <span data-i18n="nav.alternatives">Alternatifler</span>
+        </a>
+        <a href="#contact" class="bottom-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span data-i18n="nav.contact">İletişim</span>
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <span class="hero-badge"><span data-i18n="hero.badge">Sürüm 2.0 Yayında</span></span>
+        <h1 data-i18n="hero.title">Donanımınıza <br><span>Hükmedin.</span></h1>
+        <p data-i18n="hero.desc">HP Omen ve Victus cihazlar için Linux üzerinde geliştirilmiş tam kapsamlı, modern ve inanılmaz hızlı donanım kontrol merkezi.</p>
+        
+        <div class="hero-cta">
+            <a href="#" class="btn btn-primary open-install" data-i18n="hero.btn_install">İndir</a>
+            <a href="#features" class="btn btn-secondary"><span data-i18n="hero.btn_explore">Özellikleri İncele</span></a>
+            <a href="https://github.com/yunusemreyl/omen-space" target="_blank" class="btn btn-secondary" style="border-color: transparent;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                GitHub
+            </a>
+        </div>
+
+        <div class="hero-devices reveal" style="margin-top: 60px; display: flex; justify-content: center; align-items: center; gap: 2vw; flex-wrap: nowrap; width: 100%;">
+            <div class="device-card" style="text-align: center; flex: 1; min-width: 0; max-width: 250px;">
+                <img src="images/transcend14.png" alt="OMEN Transcend 14" style="width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6)); animation: float 6s ease-in-out infinite;">
+            </div>
+            <div class="device-card" style="text-align: center; flex: 1; min-width: 0; max-width: 250px;">
+                <img src="images/omen35l.png" alt="OMEN 35L Desktop" style="width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6)); animation: float 6s ease-in-out infinite 0.5s;">
+            </div>
+            <div class="device-card" style="text-align: center; flex: 1; min-width: 0; max-width: 250px;">
+                <img src="images/omen_laptop.png" alt="OMEN Laptop" style="width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6)); animation: float 6s ease-in-out infinite 1s;">
+            </div>
+            <div class="device-card" style="text-align: center; flex: 1; min-width: 0; max-width: 250px;">
+                <img src="images/victuswhite.png" alt="Victus White Laptop" style="width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6)); animation: float 6s ease-in-out infinite 1.5s;">
+            </div>
+            <div class="device-card" style="text-align: center; flex: 1; min-width: 0; max-width: 250px;">
+                <img src="images/victus_desktop.png" alt="Victus Desktop" style="width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6)); animation: float 6s ease-in-out infinite 2s;">
+            </div>
+            <div class="device-card" style="text-align: center; flex: 1; min-width: 0; max-width: 250px;">
+                <img src="images/victus_laptop.png" alt="Victus Laptop" style="width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6)); animation: float 6s ease-in-out infinite 2.5s;">
+            </div>
+        </div>
+    </header>
+
+    <!-- About / Overview Section -->
+    <section id="about" class="showcase">
+        <div class="grid-2">
+            <div class="showcase-image reveal">
+                <img src="images/perf.png" alt="Performance Dashboard">
+            </div>
+            <div class="showcase-text reveal" style="transition-delay: 0.2s;">
+                <h2 id="about-heading" data-i18n="about.title">Modern. Hızlı. Yerel.</h2>
+                <p data-i18n="about.desc">Rust ve GTK4 kullanılarak sıfırdan inşa edildi. Arka planda sistem kaynaklarınızı tüketmeyen mimarisi sayesinde oyun oynarken veya yoğun iş yükü altında performans kaybı yaşamazsınız.</p>
+                <ul class="showcase-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span data-i18n="about.li1">Natif GTK4 arayüzü ile muhteşem akıcılık</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span data-i18n="about.li2">Rust ile yazılmış güvenli ve bellek dostu arka plan servisi</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span data-i18n="about.li3">Wayland ve X11 ile tam uyumluluk</span>
+                    </li>
+                </ul>
+                <a href="#features" class="btn btn-secondary"><span data-i18n="about.btn">Tüm Özellikleri Gör</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="feat.title">Sınırsız Özellikler</h2>
+            <p class="section-subtitle" data-i18n="feat.desc">Cihazınızın potansiyelini son damlasına kadar kullanın. İhtiyacınız olan her şey tek bir merkezde toplandı.</p>
+        </div>
+
+        <div class="grid-3">
+            <!-- Feature 1 -->
+            <div class="card reveal">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <h3 data-i18n="feat.1.title">Gelişmiş Güç Yönetimi</h3>
+                <p data-i18n="feat.1.desc">Güç profillerini değiştirin, TGP limitlerini ayarlayın ve pil ömrü ile performans arasındaki mükemmel dengeyi bulun.</p>
+                <div class="card-image-container">
+                    <img src="images/profile.png" alt="Power Profiles">
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="card reveal" style="transition-delay: 0.1s;">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                </div>
+                <h3 data-i18n="feat.2.title">RGB Stüdyosu</h3>
+                <p data-i18n="feat.2.desc">Bölgesel veya tuş bazlı aydınlatma kontrolü. Animasyonlu efektler yaratın veya statik renklerle sadeliği yakalayın.</p>
+                <div class="card-image-container">
+                    <img src="images/rgb.png" alt="RGB Studio">
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="card reveal" style="transition-delay: 0.2s;">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h3 data-i18n="feat.3.title">Ryzen Undervolt</h3>
+                <p data-i18n="feat.3.desc">Isınma sorunlarına son. AMD işlemcinizin voltajını düşürün, TCC limitlerini belirleyin. Doğrudan donanım seviyesinde erişim.</p>
+                <div class="card-image-container">
+                    <img src="images/undervolt.png" alt="Undervolting">
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="card reveal">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <h3 data-i18n="feat.4.title">MUX Switch</h3>
+                <p data-i18n="feat.4.desc">Oyunlarda maksimum performans için harici ekran kartına doğrudan bağlanın veya pil ömrü için hibrit modu seçin.</p>
+                <div class="card-image-container">
+                    <img src="images/mux.png" alt="MUX Switch">
+                </div>
+            </div>
+            
+            <!-- Feature 5 -->
+            <div class="card reveal" style="transition-delay: 0.1s;">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <h3 data-i18n="feat.5.title">Sistem Tanılama</h3>
+                <p data-i18n="feat.5.desc">Donanımınızın durumunu anlık olarak izleyin. Fan hızları, sıcaklıklar, frekanslar ve kullanım oranları gözünüzün önünde.</p>
+                <div class="card-image-container">
+                    <img src="images/diagno.png" alt="Diagnostics">
+                </div>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="card reveal" style="transition-delay: 0.2s;">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </div>
+                <h3 data-i18n="feat.6.title">Geniş Ayarlar</h3>
+                <p data-i18n="feat.6.desc">Uygulamayı kendi zevkinize göre özelleştirin. Başlangıç davranışları, tema ayarları ve dil seçenekleri ile tam kontrol.</p>
+                <div class="card-image-container">
+                    <img src="images/settings.png" alt="Settings">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alternatives Section -->
+    <section id="alternatives" class="bg-alt">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="alt.title">Alternatif Çözümler</h2>
+            <p class="section-subtitle" data-i18n="alt.desc">Linux ekosisteminde OMEN ve Victus cihazlar için geliştirilmiş diğer değerli açık kaynak projeler.</p>
+        </div>
+
+        <div class="grid-2">
+            <div class="card reveal">
+                <h3>OmenCore</h3>
+                <p data-i18n="alt.omencore.desc">Termal profiller ve fan kontrolü için ilham aldığımız temel projelerden biri. Komut satırı (CLI) üzerinden güçlü sistem istatistikleri ve donanım yönetimi sunar.</p>
+                <div class="card-image-container">
+                    <img src="images/omencore.png" alt="OmenCore CLI Interface">
+                </div>
+                <div class="mt-20">
+                    <a href="https://github.com/theantipopau/omencore" target="_blank" class="btn btn-secondary"><span data-i18n="alt.btn">Projeyi İncele</span></a>
+                </div>
+            </div>
+            
+            <div class="card reveal" style="transition-delay: 0.1s;">
+                <h3>OpenOmen</h3>
+                <p data-i18n="alt.openomen.desc">Omen cihazlar için geliştirilen, klavye aydınlatması ve temel fan kontrollerine odaklanan başka bir açık kaynaklı alternatif grafik arayüz projesi. Sade ve işlevsel bir deneyim sunmayı amaçlar.</p>
+                <div class="mt-20">
+                    <a href="https://github.com/OpenOmen/OpenOmen" target="_blank" class="btn btn-secondary"><span data-i18n="alt.btn">Projeyi İncele</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture & Evolution Section -->
+    <section id="architecture">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="arch.title">Mimari ve Gelişim</h2>
+            <p class="section-subtitle" data-i18n="arch.desc">OMENSpace, eski Python tabanlı OmenCtl projesinin Rust ile sıfırdan yazılmış, sıfır maliyetli soyutlamalar (zero-cost abstractions) sunan halidir.</p>
+        </div>
+
+        <div class="table-container reveal">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="arch.th1">Özellik / Metrik</th>
+                        <th data-i18n="arch.th2">Eski OmenCtl (Python)</th>
+                        <th data-i18n="arch.th3">OMENSpace (Rust)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-i18n="arch.tr1.td1">Performans ve RAM</td>
+                        <td data-i18n="arch.tr1.td2">~40MB RAM (Python yükü)</td>
+                        <td data-i18n="arch.tr1.td3"><strong>~2.8MB binary, &lt; 5MB RAM</strong> (Sıfır ek yük)</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="arch.tr2.td1">Mimari</td>
+                        <td data-i18n="arch.tr2.td2">Senkron döngüler, alt süreç (subprocess)</td>
+                        <td data-i18n="arch.tr2.td3"><strong>Tokio Async</strong>, Zero-fork /proc & Sysfs</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="arch.tr3.td1">GUI Altyapısı</td>
+                        <td data-i18n="arch.tr3.td2">Python GTK Bindings (Hantal)</td>
+                        <td data-i18n="arch.tr3.td3"><strong>Native GTK4 & Libadwaita</strong> (İnanılmaz hızlı)</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="arch.tr4.td1">Haberleşme</td>
+                        <td data-i18n="arch.tr4.td2">pydbus</td>
+                        <td data-i18n="arch.tr4.td3"><strong>zbus</strong> (Saf Rust, yüksek eşzamanlılık)</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="arch.tr5.td1">Donanım Kontrolü</td>
+                        <td data-i18n="arch.tr5.td2">Standart ACPI Güç Profilleri</td>
+                        <td data-i18n="arch.tr5.td3"><strong>Ryzen SMU, Undervolting & Fan Temizleme!</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="grid-3 mt-60">
+            <div class="card reveal">
+                <h3 data-i18n="arch.card1.title">Backend (Daemon)</h3>
+                <p data-i18n="arch.card1.desc">Arka planda root yetkileriyle çalışan systemd servisi. WMI, ACPI, Sysfs ve MSR üzerinden donanımla güvenli bir şekilde konuşur.</p>
+            </div>
+            <div class="card reveal" style="transition-delay: 0.1s;">
+                <h3 data-i18n="arch.card2.title">Frontend (GUI & CLI)</h3>
+                <p data-i18n="arch.card2.desc">GTK4 ve Libadwaita ile inşa edilmiş modern arayüz (omen-gui) ve terminal aracı (omen-cli). Sudo gerektirmeden Daemon ile haberleşir.</p>
+            </div>
+            <div class="card reveal" style="transition-delay: 0.2s;">
+                <h3 data-i18n="arch.card3.title">Kernel Modülü</h3>
+                <p data-i18n="arch.card3.desc">Özel DKMS sürücüsü (hp-omen-extra). Fanlar, termal sensörler ve RGB kontrolü için genişletilmiş donanım arayüzleri sağlar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community & License Section -->
+    <section id="community" class="bg-alt">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="comm.title">Topluluk ve Lisans</h2>
+            <p class="section-subtitle" data-i18n="comm.desc">OMENSpace harika bir açık kaynak topluluğu tarafından geliştirilmektedir.</p>
+        </div>
+
+        <div class="grid-2 reveal">
+            <div class="card text-center">
+                <h3 data-i18n="comm.dev.title">👨‍💻 Geliştiriciler</h3>
+                <ul style="list-style: none; color: var(--text-muted); line-height: 1.8; margin-top: 15px;">
+                    <li><a href="https://github.com/yunusemreyl" target="_blank" style="color: var(--accent-cyan);">yunusemreyl</a> <span data-i18n="comm.dev.desc1">- Lead Developer</span></li>
+                    <li><a href="https://github.com/tuxov" target="_blank" style="color: var(--accent-cyan);">tuxov</a> <span data-i18n="comm.dev.desc2">- Kernel Module Lead</span></li>
+                    <li><span data-i18n="comm.dev.desc3">ve katkıda bulunan tüm</span> <a href="https://github.com/yunusemreyl/omen-space/graphs/contributors" target="_blank" style="text-decoration: underline;"><span data-i18n="comm.dev.link">GitHub Topluluğu</span></a> <span data-i18n="comm.dev.desc4">üyeleri!</span></li>
+                </ul>
+            </div>
+            <div class="card text-center">
+                <h3 data-i18n="comm.lic.title">⚖️ Lisans</h3>
+                <p style="margin-top: 15px;"><span data-i18n="comm.lic.desc1">OMENSpace,</span> <strong>GPL-3.0</strong> <span data-i18n="comm.lic.desc2">altında lisanslanmıştır.</span><br><br><span data-i18n="comm.lic.desc3">Bağımsız bir açık kaynak projesidir ve resmi olarak Hewlett-Packard (HP) ile bağlantılı değildir veya onlar tarafından desteklenmemektedir.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="contact.title">Bize Ulaşın</h2>
+            <p class="section-subtitle" data-i18n="contact.desc">Soru, görüş veya hata bildirimleriniz için her zaman buradayız.</p>
+        </div>
+        
+        <div class="grid-2 reveal">
+            <div class="card text-center" style="align-items: center;">
+                <div class="card-icon" style="margin: 0 auto 20px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <h3 data-i18n="contact.email.title">E-Posta Gönderin</h3>
+                <p data-i18n="contact.email.desc">Birebir destek veya önerileriniz için doğrudan e-posta gönderebilirsiniz.</p>
+                <a href="mailto:ye.yilmaz@outlook.com" class="btn btn-secondary mt-20"><span data-i18n="contact.email.btn">E-Posta Gönder</span></a>
+            </div>
+            <div class="card text-center" style="align-items: center;">
+                <div class="card-icon" style="margin: 0 auto 20px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <h3 data-i18n="contact.issue.title">Hata Bildirimi (Issue)</h3>
+                <p data-i18n="contact.issue.desc">Bir yazılım hatası bulduysanız veya yeni bir özellik istiyorsanız GitHub üzerinden Issue açın.</p>
+                <a href="https://github.com/yunusemreyl/omen-space/issues" target="_blank" class="btn btn-primary mt-20"><span data-i18n="contact.issue.btn">Otomatik Issue Aç</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 12L12 22L22 12L12 2Z" stroke="url(#logo-grad-footer)" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M12 6L6 12L12 18L18 12L12 6Z" fill="url(#logo-grad-footer)" fill-opacity="0.2" stroke="url(#logo-grad-footer)" stroke-width="1.5" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="logo-grad-footer" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00F5FF"/>
+                            <stop offset="1" stop-color="#9D4EDD"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                OMEN Space
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/yunusemreyl/omen-space" target="_blank" aria-label="GitHub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="footer.desc">&copy; 2026 OMEN Space. GPL-3.0 Lisansı ile Açık Kaynaklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content-wrapper">
+            <img class="lightbox-content" id="lightbox-img">
+            <div id="lightbox-caption"></div>
+        </div>
     </div>
-    <div class="nav-links">
-      <a href="#about">Nedir?</a>
-      <a href="#features">Özellikler</a>
-      <a href="#alternatives">Alternatifler</a>
+
+    <!-- Install Modal -->
+    <div id="install-modal" class="lightbox">
+        <div class="lightbox-content-wrapper" style="max-width: 900px; height: auto;">
+            <span class="lightbox-close install-close">&times;</span>
+            <div class="lightbox-content install-modal-content" style="background: var(--bg-main); text-align: left; overflow-y: auto; max-height: 85vh; border-radius: 20px;">
+                <h2 style="font-size: 2rem; margin-bottom: 10px; color: var(--text-main);" data-i18n="modal.title">OMENSpace Kurulumu</h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px;" data-i18n="modal.desc">Terminalinizi açın ve size uygun komutu yapıştırın.</p>
+                
+                <div class="terminal-container">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <div class="terminal-title" data-i18n="modal.rec">1-Line Web Installer (Önerilen)</div>
+                    </div>
+                    <div class="terminal-body" style="padding: 20px;">
+                        <pre><code>curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash</code></pre>
+                    </div>
+                </div>
+                
+                <div class="grid-2" style="margin-top: 30px; gap: 20px;">
+                    <div style="background: var(--bg-alt-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--text-main); margin-bottom: 10px;" data-i18n="modal.stable">🟢 Stable (Kararlı)</h4>
+                        <div class="code-block" style="margin-top: 0; padding: 12px;">
+                            <pre><code>curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash -s -- --stable</code></pre>
+                        </div>
+                    </div>
+                    <div style="background: var(--bg-alt-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color);">
+                        <h4 style="color: var(--text-main); margin-bottom: 10px;" data-i18n="modal.canary">🟡 Canary (Geliştirici)</h4>
+                        <div class="code-block" style="margin-top: 0; padding: 12px;">
+                            <pre><code>curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash -s -- --canary</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; text-align: left; border-top: 1px solid var(--border-color); padding-top: 30px;">
+                    <details class="install-details">
+                        <summary data-i18n="modal.alt">📦 Alternatif Kurulum Seçenekleri</summary>
+                        <div class="install-details-content">
+                            <div style="margin-bottom: 25px; margin-top: 20px;">
+                                <h4 style="color: var(--accent-cyan); margin-bottom: 10px;">Git Clone (Ubuntu, Fedora, vb.)</h4>
+                                <div class="code-block" style="margin-top: 0; padding: 15px;">
+                                    <pre><code>git clone https://github.com/yunusemreyl/omen-space.git
+cd omen-space
+chmod +x setup.sh
+sudo ./setup.sh install</code></pre>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 25px;">
+                                <h4 style="color: var(--accent-cyan); margin-bottom: 10px;">Arch Linux (AUR / PKGBUILD)</h4>
+                                <div class="code-block" style="margin-top: 0; padding: 15px;">
+                                    <pre><code>git clone https://github.com/yunusemreyl/omen-space.git
+cd omen-space
+makepkg -si</code></pre>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 10px;">
+                                <h4 style="color: var(--accent-cyan); margin-bottom: 10px;">NixOS (Flakes)</h4>
+                                <div class="code-block" style="margin-top: 0; padding: 15px;">
+                                    <pre><code>nix profile install github:yunusemreyl/omen-space</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
     </div>
-    <a href="#download" class="btn-primary">İndir</a>
-  </nav>
 
-  <!-- Hero -->
-  <header class="hero reveal active">
-    <h1>Donanımınıza<br>Hükmedin.</h1>
-    <p>HP Omen ve Victus cihazlar için Linux üzerinde geliştirilmiş tam kapsamlı donanım kontrol merkezi.</p>
-    <a href="#download" class="btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">Keşfetmeye Başla</a>
-  </header>
-
-  <!-- Split Section (Image + Text) -->
-  <section id="about" class="bg-alt">
-    <div class="grid-2 reveal">
-      <div class="img-placeholder">Dashboard Görseli (images/perf.png)</div>
-      <div>
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Modern. Hızlı. Yerel.</h2>
-        <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
-          Rust ve GTK4 ile sıfırdan yazıldı. Arka planda kaynak tüketmeyen mimarisi sayesinde oyun oynarken veya çalışırken performans kaybı yaşamazsınız. Fan eğrileri, RGB aydınlatma ve güç profilleri tamamen elinizin altında.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features Grid -->
-  <section id="features">
-    <h2 class="section-title reveal">Sınırsız Özellikler</h2>
-    <div class="grid-3">
-      <div class="card reveal">
-        <h3>Özel Fan Eğrileri</h3>
-        <p>Sıcaklık ve dönüş hızı grafiklerini kendi kullanım senaryonuza göre milimetrik olarak ayarlayın.</p>
-      </div>
-      <div class="card reveal">
-        <h3>RGB Stüdyosu</h3>
-        <p>Bölgesel veya tuş bazlı aydınlatma. Statik renkler veya donanım hızlandırmalı animasyon efektleri.</p>
-      </div>
-      <div class="card reveal">
-        <h3>Ryzen Undervolt</h3>
-        <p>Çekirdek voltajını düşürün, TCC limitlerini belirleyin. Doğrudan MSR erişimi ile tam kontrol.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 OMEN Space. GPL-3.0 Lisansı ile Açık Kaynaklıdır.</p>
-  </footer>
-
-  <script>
-    // Yapışkan Menü (Sticky Navbar) Efekti
-    window.addEventListener('scroll', () => {
-      const navbar = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-
-    // Kaydırma (Scroll) Animasyonları
-    const reveals = document.querySelectorAll('.reveal');
-    const revealOnScroll = () => {
-      const windowHeight = window.innerHeight;
-      const elementVisible = 100;
-
-      reveals.forEach(reveal => {
-        const elementTop = reveal.getBoundingClientRect().top;
-        if (elementTop < windowHeight - elementVisible) {
-          reveal.classList.add('active');
-        }
-      });
-    };
-
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // Sayfa yüklendiğinde kontrol et
-  </script>
-
+    <!-- JavaScript -->
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
