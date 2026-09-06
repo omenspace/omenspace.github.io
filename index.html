@@ -4,172 +4,143 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OMEN Space — Total control over your Omen laptop</title>
-<meta name="description" content="OMEN Space is an open-source Rust and GTK4 control suite for HP Omen, Victus, and Transcend laptops on Linux: fan curves, RGB lighting, undervolting, and GPU switching.">
+<meta name="description" content="OMEN Space is an open-source Rust and GTK4 control suite for HP Omen, Victus, and Transcend laptops on Linux.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 22,12 12,22 2,12' fill='%237B6EF6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg: #08080C;
-    --glass: rgba(255,255,255,0.045);
-    --glass-brd: rgba(255,255,255,0.09);
-    --glass-brd-hi: rgba(255,255,255,0.16);
-    --text: #F3F1F8;
-    --muted: #938FA3;
-    --teal: #34D6C1;
-    --violet: #7B6EF6;
-    --coral: #FF7A56;
-    --grad: linear-gradient(100deg, var(--teal), var(--violet) 55%, var(--coral));
+  :root {
+    --bg: #050508;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-brd: rgba(255, 255, 255, 0.08);
+    --glass-brd-hi: rgba(255, 255, 255, 0.2);
+    --text: #F8F9FA;
+    --muted: #A1A1AA;
+    --teal: #00F0FF;
+    --violet: #8A2BE2;
+    --coral: #FF0055;
+    --grad: linear-gradient(135deg, var(--teal), var(--violet) 50%, var(--coral));
     --sans: 'Sora', system-ui, sans-serif;
     --body: 'Inter', system-ui, sans-serif;
     --mono: 'IBM Plex Mono', ui-monospace, monospace;
   }
-  *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    margin:0; background: var(--bg); color: var(--text);
-    font-family: var(--body); line-height:1.55; -webkit-font-smoothing:antialiased;
-    position:relative; overflow-x:hidden;
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--body); line-height: 1.6; -webkit-font-smoothing: antialiased;
+    position: relative; overflow-x: hidden;
   }
-  a{ color:inherit; }
-  img{ max-width:100%; display:block; }
-  h1,h2,h3{ font-family: var(--sans); font-weight:700; margin:0; letter-spacing:-0.02em; }
-  p{ color: var(--muted); margin:0; }
-  .wrap{ max-width: 1120px; margin:0 auto; padding: 0 24px; position:relative; z-index:2; }
-  :focus-visible{ outline: 2px solid var(--violet); outline-offset:3px; }
+  a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  img { max-width: 100%; display: block; border-radius: 12px; }
+  h1, h2, h3 { font-family: var(--sans); font-weight: 700; letter-spacing: -0.02em; }
+  p { color: var(--muted); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+  :focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
 
-  /* glow orbs */
-  .orb{ position:absolute; border-radius:50%; filter: blur(90px); z-index:0; pointer-events:none; opacity:0.55; }
-  .orb-1{ width:520px; height:520px; top:-180px; left:-120px; background: radial-gradient(circle, var(--violet), transparent 70%); }
-  .orb-2{ width:460px; height:460px; top:60px; right:-160px; background: radial-gradient(circle, var(--teal), transparent 70%); }
-  .orb-3{ width:420px; height:420px; bottom:-160px; left:38%; background: radial-gradient(circle, var(--coral), transparent 70%); animation: drift 16s ease-in-out infinite alternate; }
-  @keyframes drift{ to{ transform: translateX(60px) translateY(-30px); } }
-  @media (prefers-reduced-motion: reduce){ .orb-3{ animation:none; } }
+  /* Glow Orbs */
+  .orb { position: absolute; border-radius: 50%; filter: blur(100px); z-index: 0; opacity: 0.4; pointer-events: none; }
+  .orb-1 { width: 50vw; height: 50vw; top: -20%; left: -10%; background: radial-gradient(circle, var(--violet), transparent 60%); }
+  .orb-2 { width: 40vw; height: 40vw; top: 10%; right: -10%; background: radial-gradient(circle, var(--teal), transparent 60%); }
+  .orb-3 { width: 45vw; height: 45vw; bottom: -10%; left: 30%; background: radial-gradient(circle, var(--coral), transparent 60%); animation: drift 20s ease-in-out infinite alternate; }
+  @keyframes drift { to { transform: translate(50px, -50px); } }
 
-  .glass{
-    background: var(--glass); border:1px solid var(--glass-brd);
-    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-    border-radius: 22px;
+  /* Glassmorphism */
+  .glass {
+    background: var(--glass); border: 1px solid var(--glass-brd);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px; transition: transform 0.3s ease, border-color 0.3s ease;
   }
+  .glass-hover:hover { border-color: var(--glass-brd-hi); transform: translateY(-4px); }
 
-  /* nav */
-  header{ position:sticky; top:16px; z-index:30; }
-  .navpill{
-    max-width: 880px; margin:0 auto; display:flex; align-items:center; justify-content:space-between;
-    padding: 10px 12px 10px 20px; border-radius: 999px;
+  /* Navigation */
+  header { position: sticky; top: 20px; z-index: 50; }
+  .navpill {
+    max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px 12px 24px; border-radius: 999px;
   }
-  .brand{ display:flex; align-items:center; gap:9px; font-family:var(--sans); font-weight:700; font-size:1rem; text-decoration:none; }
-  .brand svg{ width:16px; height:16px; }
-  .navlinks{ display:flex; align-items:center; gap:26px; }
-  .navlinks a{ text-decoration:none; color: var(--muted); font-size:0.88rem; }
-  .navlinks a:hover{ color: var(--text); }
-  @media (max-width: 680px){ .navlinks .hide-mobile{ display:none; } }
-  .pill-btn{
-    display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:600; font-size:0.86rem;
-    padding: 10px 18px; border-radius:999px; white-space:nowrap;
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--sans); font-weight: 700; font-size: 1.1rem; }
+  .brand svg { width: 20px; height: 20px; }
+  .navlinks { display: flex; align-items: center; gap: 30px; }
+  .navlinks a:hover { color: var(--text); }
+  @media (max-width: 768px) { .navlinks .hide-mobile { display: none; } }
+  
+  /* Buttons */
+  .pill-btn {
+    display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.9rem;
+    padding: 12px 24px; border-radius: 999px; white-space: nowrap; transition: all 0.3s ease;
   }
-  .pill-primary{ background: var(--grad); color:#08080C; }
-  .pill-secondary{ border:1px solid var(--glass-brd-hi); color:var(--text); }
-  .pill-secondary:hover{ border-color: var(--violet); }
+  .pill-primary { background: var(--grad); color: #000; box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3); }
+  .pill-primary:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5); }
+  .pill-secondary { border: 1px solid var(--glass-brd-hi); background: rgba(255,255,255,0.02); }
+  .pill-secondary:hover { border-color: var(--teal); background: rgba(0, 240, 255, 0.05); }
 
-  /* hero */
-  .hero{ padding: 90px 0 40px; text-align:center; }
-  .badge{
-    display:inline-flex; align-items:center; gap:8px; font-size:0.8rem; color: var(--muted);
-    padding: 7px 16px; border-radius:999px; margin-bottom:26px;
+  /* Hero Section */
+  .hero { padding: 120px 0 60px; text-align: center; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--muted);
+    padding: 8px 20px; border-radius: 999px; margin-bottom: 30px;
   }
-  .badge .dot{ width:6px; height:6px; border-radius:50%; background: var(--teal); box-shadow: 0 0 8px var(--teal); }
-  .hero h1{
-    font-size: clamp(2.3rem, 1.6rem + 3vw, 4rem); line-height:1.08; max-width: 15ch; margin: 0 auto;
-    background: var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 10px var(--teal); }
+  .hero h1 {
+    font-size: clamp(2.5rem, 4vw + 1rem, 5rem); line-height: 1.1; max-width: 800px; margin: 0 auto;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .hero .lede{ max-width:52ch; margin: 22px auto 0; font-size:1.08rem; }
-  .cta-row{ margin-top:32px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-  .cta-row .pill-btn{ padding: 13px 26px; font-size:0.94rem; }
+  .hero .lede { max-width: 600px; margin: 24px auto 0; font-size: 1.15rem; }
+  .cta-row { margin-top: 40px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  
+  .hero-shot { margin: 60px auto 0; max-width: 900px; padding: 8px; }
+  .hero-shot .bar { display: flex; gap: 8px; padding: 12px; }
+  .hero-shot .bar span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); }
 
-  .hero-shot{ margin: 56px auto 0; max-width: 860px; padding: 14px; }
-  .hero-shot .bar{ display:flex; gap:6px; padding: 4px 6px 14px; }
-  .hero-shot .bar span{ width:9px; height:9px; border-radius:50%; background: rgba(255,255,255,0.14); }
-  .hero-shot img{ border-radius: 14px; border:1px solid var(--glass-brd); width:100%; }
+  /* Responsive Grids */
+  section { padding: 80px 0; }
+  .section-head { text-align: center; max-width: 600px; margin: 0 auto 50px; }
+  .section-head h2 { font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 16px; }
+  .section-head p { font-size: 1.05rem; }
 
-  /* trust row */
-  .trust{ padding: 50px 0 10px; text-align:center; }
-  .trust p{ font-size:0.82rem; margin-bottom:18px; }
-  .distro-row{ display:flex; justify-content:center; flex-wrap:wrap; gap:10px; }
-  .distro-row span{ font-family: var(--mono); font-size:0.78rem; color: var(--muted); border:1px solid var(--glass-brd); border-radius:999px; padding:7px 15px; }
+  /* Universal auto-fit grids */
+  .auto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  
+  /* Stats */
+  .stat-card { padding: 40px 24px; text-align: center; }
+  .stat-card .num { font-family: var(--sans); font-size: 2.5rem; font-weight: 800; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  
+  /* Features */
+  .feat-card { padding: 32px 24px; }
+  .icon-bubble { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.5rem; background: rgba(255,255,255,0.05); }
+  .feat-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: #fff; }
 
-  /* stats */
-  .stats-row{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; padding: 70px 0; }
-  @media (max-width:720px){ .stats-row{ grid-template-columns:1fr; } }
-  .stat-card{ padding: 30px 24px; text-align:center; }
-  .stat-card .num{ font-family: var(--sans); font-size:2.1rem; font-weight:800; background: var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .stat-card .lbl{ margin-top:8px; font-size:0.88rem; }
+  /* Screenshots */
+  .shot-card { overflow: hidden; padding-bottom: 10px; }
+  .shot-card img { border-radius: 0; width: 100%; height: 220px; object-fit: cover; object-position: top; }
+  .shot-card figcaption { padding: 20px; font-size: 0.9rem; }
+  .shot-card figcaption b { display: block; color: var(--text); font-size: 1.05rem; margin-bottom: 6px; }
 
-  section{ padding: 70px 0; }
-  .section-head{ text-align:center; max-width: 52ch; margin: 0 auto 46px; }
-  .section-head h2{ font-size: clamp(1.7rem,1.3rem+1.4vw,2.3rem); }
-  .section-head p{ margin-top:12px; font-size:1rem; }
+  /* Architecture */
+  .arch-flow { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .arch-row { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .arch-card { padding: 20px 30px; text-align: center; min-width: 200px; }
+  .arch-card b { font-family: var(--mono); font-size: 0.9rem; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .arch-card span { display: block; font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
+  .arch-line { width: 2px; height: 30px; background: linear-gradient(var(--teal), transparent); }
 
-  /* features */
-  .feat-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
-  @media (max-width:900px){ .feat-grid{ grid-template-columns: repeat(2,1fr); } }
-  @media (max-width:620px){ .feat-grid{ grid-template-columns: 1fr; } }
-  .feat-card{ padding: 28px 24px; transition: border-color .2s, transform .2s; }
-  .feat-card:hover{ border-color: var(--glass-brd-hi); transform: translateY(-3px); }
-  .icon-bubble{ width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; font-size:1.1rem; }
-  .feat-card h3{ font-size:1.04rem; }
-  .feat-card p{ margin-top:9px; font-size:0.9rem; }
+  /* Terminal / Install */
+  .term-glass { max-width: 700px; margin: 0 auto; padding: 4px; }
+  .term-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; font-size: 0.85rem; color: var(--muted); border-bottom: 1px solid var(--glass-brd); }
+  .term-body { font-family: var(--mono); font-size: 0.9rem; color: var(--teal); padding: 20px; word-break: break-all; white-space: pre-wrap; }
+  .copy-btn { background: rgba(255,255,255,0.1); border: none; color: var(--text); padding: 6px 12px; border-radius: 6px; font-family: var(--mono); font-size: 0.8rem; cursor: pointer; transition: 0.2s; }
+  .copy-btn:hover { background: var(--teal); color: #000; }
+  
+  details { max-width: 700px; margin: 30px auto 0; }
+  summary { cursor: pointer; color: var(--text); font-size: 1rem; text-align: center; font-weight: 600; padding: 10px; }
+  details .term-glass { margin-top: 20px; }
 
-  /* screenshots */
-  .shot-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
-  @media (max-width:900px){ .shot-grid{ grid-template-columns: repeat(2,1fr); } }
-  @media (max-width:620px){ .shot-grid{ grid-template-columns: 1fr; } }
-  .shot-card{ overflow:hidden; }
-  .shot-card .bar{ display:flex; gap:5px; padding:10px 12px; }
-  .shot-card .bar span{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.12); }
-  .shot-card img{ height:190px; width:100%; object-fit:cover; object-position:top; }
-  .shot-card figcaption{ padding: 14px 16px 18px; font-size:0.85rem; }
-  .shot-card figcaption b{ display:block; color:var(--text); font-weight:600; font-size:0.9rem; margin-bottom:3px; }
-
-  /* architecture */
-  .arch-flow{ display:flex; flex-direction:column; align-items:center; gap:14px; }
-  .arch-row{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
-  .arch-card{ padding: 16px 22px; text-align:center; min-width:160px; }
-  .arch-card b{ font-family:var(--mono); font-size:0.84rem; background: var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .arch-card span{ display:block; font-size:0.78rem; color:var(--muted); margin-top:5px; }
-  .arch-line{ width:2px; height:24px; background: linear-gradient(var(--violet), transparent); }
-  .arch-bus{ font-family:var(--mono); font-size:0.75rem; color:var(--muted); border:1px dashed var(--glass-brd-hi); border-radius:999px; padding:7px 18px; }
-
-  /* comparison */
-  .compare{ padding: 8px; }
-  table{ width:100%; border-collapse:collapse; font-size:0.92rem; }
-  th,td{ text-align:left; padding: 14px 18px; border-bottom:1px solid var(--glass-brd); }
-  th{ color:var(--muted); font-weight:500; font-size:0.8rem; }
-  td:nth-child(3){ font-family:var(--mono); color:var(--teal); }
-
-  /* install */
-  .term-glass{ max-width:640px; margin: 0 auto; padding: 4px; }
-  .term-bar{ display:flex; justify-content:space-between; align-items:center; padding:10px 16px; font-size:0.78rem; color:var(--muted); }
-  .term-body{ font-family:var(--mono); font-size:0.86rem; color: var(--teal); padding: 10px 18px 20px; word-break:break-all; white-space:pre-wrap; }
-  .term-body .p{ color:var(--muted); }
-  .copy-btn{ background:none; border:none; color:var(--muted); font-family:var(--mono); font-size:0.75rem; cursor:pointer; }
-  .copy-btn:hover{ color:var(--text); }
-  details{ max-width:640px; margin: 22px auto 0; }
-  summary{ cursor:pointer; color:var(--muted); font-size:0.9rem; text-align:center; }
-  details .term-glass{ margin-top:16px; }
-
-  /* final cta */
-  .final-cta{ text-align:center; padding: 60px 40px; margin: 0 24px; }
-  .final-cta h2{ font-size: clamp(1.6rem,1.2rem+1.4vw,2.2rem); max-width:20ch; margin:0 auto; }
-  .final-cta p{ margin-top:14px; }
-  .final-cta .cta-row{ margin-top:28px; }
-
-  footer{ padding: 50px 0 40px; text-align:center; }
-  footer .flinks{ display:flex; gap:22px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
-  footer a{ text-decoration:none; font-size:0.88rem; color:var(--muted); }
-  footer a:hover{ color: var(--text); }
-  footer .note{ font-size:0.78rem; color:var(--muted); max-width:52ch; margin: 0 auto; }
+  /* Footer */
+  footer { padding: 60px 0; text-align: center; border-top: 1px solid var(--glass-brd); margin-top: 60px; }
+  footer .flinks { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
 </style>
 </head>
 <body>
@@ -189,14 +160,13 @@
         <a href="#features" class="hide-mobile">Features</a>
         <a href="#screens" class="hide-mobile">Screens</a>
         <a href="#architecture" class="hide-mobile">Architecture</a>
-        <a href="#install" class="pill-btn pill-primary">Get OMEN Space</a>
+        <a href="#install" class="pill-btn pill-primary">Get App</a>
       </div>
     </nav>
   </div>
 </header>
 
 <main id="top">
-
   <section class="hero">
     <div class="wrap">
       <div class="badge glass"><span class="dot"></span> Now on Rust — v2.0.0</div>
@@ -208,25 +178,16 @@
       </div>
       <div class="hero-shot glass">
         <div class="bar"><span></span><span></span><span></span></div>
-        <img src="images/perf.png" alt="OMEN Space fan curve editor with live telemetry" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <section class="trust">
-    <div class="wrap">
-      <p>Packaged for every major distro</p>
-      <div class="distro-row">
-        <span>Fedora / RHEL</span><span>Ubuntu / Debian / Pop!_OS</span><span>Arch / Manjaro</span><span>NixOS</span><span>openSUSE</span>
+        <img src="images/perf.png" alt="OMEN Space fan curve editor" loading="lazy">
       </div>
     </div>
   </section>
 
   <div class="wrap">
-    <div class="stats-row">
-      <div class="stat-card glass"><div class="num">2.8MB</div><div class="lbl">binary, down from a ~40MB Python interpreter</div></div>
-      <div class="stat-card glass"><div class="num">&lt;5MB</div><div class="lbl">RAM at idle with zero-fork telemetry</div></div>
-      <div class="stat-card glass"><div class="num">GPL-3.0</div><div class="lbl">fully open source, kernel module included</div></div>
+    <div class="auto-grid stats-row">
+      <div class="stat-card glass glass-hover"><div class="num">2.8MB</div><div class="lbl">Ultra-light Rust binary</div></div>
+      <div class="stat-card glass glass-hover"><div class="num">&lt;5MB</div><div class="lbl">RAM at idle telemetry</div></div>
+      <div class="stat-card glass glass-hover"><div class="num">GPL-3.0</div><div class="lbl">Fully open source</div></div>
     </div>
   </div>
 
@@ -234,38 +195,38 @@
     <div class="wrap">
       <div class="section-head">
         <h2>What it controls</h2>
-        <p>Everything the daemon touches, it touches directly — WMI, ACPI, sysfs, and MSR — no vendor utility running underneath.</p>
+        <p>Direct hardware access through WMI, ACPI, sysfs, and MSR. No bloatware.</p>
       </div>
-      <div class="feat-grid">
-        <div class="feat-card glass">
-          <div class="icon-bubble" style="background:rgba(52,214,193,0.15);">📈</div>
+      <div class="auto-grid">
+        <div class="feat-card glass glass-hover">
+          <div class="icon-bubble">📈</div>
           <h3>Custom fan curves</h3>
-          <p>Draw your own spline and the daemon holds it, smoothed by a moving average so a temperature spike doesn't set the fans flapping.</p>
+          <p>Draw your own spline and the daemon holds it, smoothed by a moving average.</p>
         </div>
-        <div class="feat-card glass">
-          <div class="icon-bubble" style="background:rgba(123,110,246,0.15);">⚡</div>
+        <div class="feat-card glass glass-hover">
+          <div class="icon-bubble">⚡</div>
           <h3>Thermal profiles</h3>
-          <p>Switch between power-saver, balanced, and performance instantly, applied straight through ACPI and WMI.</p>
+          <p>Switch between power-saver, balanced, and performance instantly.</p>
         </div>
-        <div class="feat-card glass">
-          <div class="icon-bubble" style="background:rgba(255,122,86,0.15);">🌈</div>
+        <div class="feat-card glass glass-hover">
+          <div class="icon-bubble">🌈</div>
           <h3>RGB keyboard lighting</h3>
-          <p>4-zone or per-key control over static colors, breathing, wave, and cycle effects, hardware-accelerated over sysfs.</p>
+          <p>4-zone or per-key control over static colors and animated effects.</p>
         </div>
-        <div class="feat-card glass">
-          <div class="icon-bubble" style="background:rgba(52,214,193,0.15);">🔧</div>
-          <h3>Ryzen SMU &amp; undervolting</h3>
-          <p>Drop core voltage, set TCC offsets, and cap GPU TGP directly through MSR access, without leaving Linux.</p>
+        <div class="feat-card glass glass-hover">
+          <div class="icon-bubble">🔧</div>
+          <h3>Ryzen undervolting</h3>
+          <p>Drop core voltage and set TCC offsets directly through MSR access.</p>
         </div>
-        <div class="feat-card glass">
-          <div class="icon-bubble" style="background:rgba(123,110,246,0.15);">🎮</div>
+        <div class="feat-card glass glass-hover">
+          <div class="icon-bubble">🎮</div>
           <h3>GPU MUX switch</h3>
-          <p>Flip between integrated and discrete graphics routing using the same WMI payload HP's own tooling relies on.</p>
+          <p>Flip between integrated and discrete graphics routing effortlessly.</p>
         </div>
-        <div class="feat-card glass">
-          <div class="icon-bubble" style="background:rgba(255,122,86,0.15);">💻</div>
-          <h3>CLI, tray &amp; BIOS checks</h3>
-          <p>Script changes from the terminal, watch things from the tray applet, or let the daemon check HP's own servers for firmware updates.</p>
+        <div class="feat-card glass glass-hover">
+          <div class="icon-bubble">💻</div>
+          <h3>CLI & Tray</h3>
+          <p>Script changes from the terminal or watch hardware temps from the tray.</p>
         </div>
       </div>
     </div>
@@ -275,38 +236,20 @@
     <div class="wrap">
       <div class="section-head">
         <h2>Inside the interface</h2>
-        <p>Native GTK4 and Libadwaita, running in user space — the daemon does the privileged work over D-Bus.</p>
+        <p>Native GTK4 and Libadwaita for a seamless modern Linux experience.</p>
       </div>
-      <div class="shot-grid">
-        <figure class="shot-card glass">
-          <div class="bar"><span></span><span></span><span></span></div>
+      <div class="auto-grid">
+        <figure class="shot-card glass glass-hover">
           <img src="images/rgb.png" alt="RGB keyboard lighting studio" loading="lazy">
-          <figcaption><b>RGB lighting studio</b>4-zone and per-key animated effects.</figcaption>
+          <figcaption><b>RGB Studio</b> 4-zone and per-key effects.</figcaption>
         </figure>
-        <figure class="shot-card glass">
-          <div class="bar"><span></span><span></span><span></span></div>
-          <img src="images/undervolt.png" alt="Ryzen SMU and undervolting panel" loading="lazy">
-          <figcaption><b>SMU &amp; undervolting</b>MSR offsets, TCC limits, GPU TGP.</figcaption>
+        <figure class="shot-card glass glass-hover">
+          <img src="images/undervolt.png" alt="Ryzen SMU" loading="lazy">
+          <figcaption><b>Undervolting</b> MSR offsets, TCC limits.</figcaption>
         </figure>
-        <figure class="shot-card glass">
-          <div class="bar"><span></span><span></span><span></span></div>
-          <img src="images/mux.png" alt="GPU MUX switch panel" loading="lazy">
-          <figcaption><b>MUX switch</b>Native Optimus / dGPU routing.</figcaption>
-        </figure>
-        <figure class="shot-card glass">
-          <div class="bar"><span></span><span></span><span></span></div>
-          <img src="images/diagno.png" alt="Hardware diagnostics panel" loading="lazy">
-          <figcaption><b>Diagnostics</b>Live thermals, clocks, battery health.</figcaption>
-        </figure>
-        <figure class="shot-card glass">
-          <div class="bar"><span></span><span></span><span></span></div>
-          <img src="images/updater.png" alt="HP BIOS updater panel" loading="lazy">
-          <figcaption><b>BIOS updater</b>DMI queries against HP's own servers.</figcaption>
-        </figure>
-        <figure class="shot-card glass">
-          <div class="bar"><span></span><span></span><span></span></div>
-          <img src="images/cli.png" alt="Command line interface" loading="lazy">
-          <figcaption><b>CLI</b>Scriptable hardware control from the terminal.</figcaption>
+        <figure class="shot-card glass glass-hover">
+          <img src="images/mux.png" alt="GPU MUX switch" loading="lazy">
+          <figcaption><b>MUX Switch</b> Native Optimus routing.</figcaption>
         </figure>
       </div>
     </div>
@@ -315,42 +258,21 @@
   <section id="architecture">
     <div class="wrap">
       <div class="section-head">
-        <h2>How it's put together</h2>
-        <p>Four Rust crates and a kernel module, split so nothing user-facing needs root.</p>
+        <h2>Architecture</h2>
+        <p>Split design so user-facing UI never needs root privileges.</p>
       </div>
       <div class="arch-flow">
         <div class="arch-row">
-          <div class="arch-card glass"><b>omen-gui</b><span>GTK4 + Libadwaita</span></div>
-          <div class="arch-card glass"><b>omen-cli</b><span>terminal control</span></div>
-          <div class="arch-card glass"><b>omen-tray</b><span>panel applet</span></div>
+          <div class="arch-card glass"><b>omen-gui</b><span>GTK4</span></div>
+          <div class="arch-card glass"><b>omen-cli</b><span>Terminal</span></div>
+          <div class="arch-card glass"><b>omen-tray</b><span>Applet</span></div>
         </div>
         <div class="arch-line"></div>
-        <div class="arch-bus">D-Bus — org.hp.omen.*</div>
+        <div class="arch-card glass" style="border: 1px dashed var(--glass-brd-hi);">D-Bus — org.hp.omen.*</div>
         <div class="arch-line"></div>
-        <div class="arch-row"><div class="arch-card glass"><b>omen-space-daemon</b><span>systemd service, root privileges</span></div></div>
+        <div class="arch-row"><div class="arch-card glass"><b>omen-space-daemon</b><span>Root Privileges</span></div></div>
         <div class="arch-line"></div>
-        <div class="arch-row"><div class="arch-card glass"><b>hp-omen-extra</b><span>DKMS kernel module — WMI, sysfs, RGB</span></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="evolution">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>From OmenCtl to OMEN Space</h2>
-        <p>A ground-up rewrite of the original Python project, moved to Rust for native performance.</p>
-      </div>
-      <div class="glass compare">
-        <table>
-          <thead><tr><th>Metric</th><th>Legacy (Python)</th><th>OMEN Space (Rust)</th></tr></thead>
-          <tbody>
-            <tr><td>Memory</td><td>~40MB (interpreter overhead)</td><td>~2.8MB binary, &lt;5MB RAM</td></tr>
-            <tr><td>Concurrency</td><td>Sync loops, heavy subprocess use</td><td>Tokio async, zero-fork telemetry</td></tr>
-            <tr><td>GUI</td><td>Python GTK bindings</td><td>Native GTK4 + Libadwaita</td></tr>
-            <tr><td>IPC</td><td>pydbus</td><td>zbus (pure Rust)</td></tr>
-            <tr><td>Tuning</td><td>Standard ACPI profiles</td><td>Ryzen SMU, undervolting, fan cleaning mode</td></tr>
-          </tbody>
-        </table>
+        <div class="arch-row"><div class="arch-card glass"><b>hp-omen-extra</b><span>DKMS Kernel Module</span></div></div>
       </div>
     </div>
   </section>
@@ -359,43 +281,39 @@
     <div class="wrap">
       <div class="section-head">
         <h2>Install in one line</h2>
-        <p>The web installer detects your package manager, resolves dependencies, and builds with release optimizations.</p>
+        <p>The installer detects your distro and handles dependencies automatically.</p>
       </div>
       <div class="term-glass glass">
-        <div class="term-bar"><span>recommended</span><button class="copy-btn" onclick="copyInstall(this)">copy</button></div>
-        <div class="term-body"><span class="p">$ </span>curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash</div>
+        <div class="term-bar"><span>Terminal</span><button class="copy-btn" onclick="copyInstall(this)">Copy</button></div>
+        <div class="term-body">$ curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash</div>
       </div>
+      
       <details>
-        <summary>Other install methods (git clone, Arch, NixOS)</summary>
+        <summary>View manual install methods</summary>
         <div class="term-glass glass">
-          <div class="term-bar"><span>git clone</span></div>
-          <div class="term-body"><span class="p">$ </span>git clone https://github.com/yunusemreyl/omen-space.git
-<span class="p">$ </span>cd omen-space &amp;&amp; chmod +x setup.sh
-<span class="p">$ </span>sudo ./setup.sh install</div>
+          <div class="term-bar"><span>Git Clone</span></div>
+          <div class="term-body">$ git clone https://github.com/yunusemreyl/omen-space.git
+$ cd omen-space && chmod +x setup.sh
+$ sudo ./setup.sh install</div>
         </div>
         <div class="term-glass glass">
-          <div class="term-bar"><span>Arch Linux (AUR / PKGBUILD)</span></div>
-          <div class="term-body"><span class="p">$ </span>makepkg -si</div>
-        </div>
-        <div class="term-glass glass">
-          <div class="term-bar"><span>NixOS (flakes)</span></div>
-          <div class="term-body"><span class="p">$ </span>nix profile install github:yunusemreyl/omen-space</div>
+          <div class="term-bar"><span>Arch Linux (AUR)</span></div>
+          <div class="term-body">$ makepkg -si</div>
         </div>
       </details>
     </div>
   </section>
-
-  <div class="wrap">
-    <div class="final-cta glass">
-      <h2>Your laptop, fully under your control.</h2>
-      <p>Free, open source, and built for the hardware you already own.</p>
-      <div class="cta-row">
-        <a class="pill-btn pill-primary" href="#install">Install on Linux</a>
-        <a class="pill-btn pill-secondary" href="https://github.com/yunusemreyl/OmenFlow" target="_blank" rel="noopener">OmenFlow for Windows</a>
+  
+  <section>
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom: 0;">
+        <h2>Ready to take control?</h2>
+        <div class="cta-row">
+          <a class="pill-btn pill-primary" href="#install" style="font-size: 1.1rem; padding: 16px 32px;">Install OMEN Space</a>
+        </div>
       </div>
     </div>
-  </div>
-
+  </section>
 </main>
 
 <footer>
@@ -404,19 +322,19 @@
       <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener">GitHub</a>
       <a href="https://github.com/yunusemreyl/omen-space/releases" target="_blank" rel="noopener">Releases</a>
       <a href="https://github.com/yunusemreyl/omen-space/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
-      <a href="https://github.com/yunusemreyl" target="_blank" rel="noopener">yunusemreyl</a>
-      <a href="https://github.com/tuxov" target="_blank" rel="noopener">tuxov</a>
+      <a href="https://github.com/yunusemreyl" target="_blank" rel="noopener">@yunusemreyl</a>
+      <a href="https://github.com/tuxov" target="_blank" rel="noopener">@tuxov</a>
     </div>
-    <p class="note">OMEN Space is an independent, community-built project licensed under GPL-3.0 — not affiliated with, authorized, or endorsed by Hewlett-Packard.</p>
+    <p class="muted" style="font-size: 0.85rem; max-width: 600px; margin: 0 auto;">OMEN Space is an independent open-source project (GPL-3.0). Not affiliated with Hewlett-Packard.</p>
   </div>
 </footer>
 
 <script>
-  function copyInstall(btn){
+  function copyInstall(btn) {
     const cmd = "curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash";
     navigator.clipboard.writeText(cmd).then(() => {
       const old = btn.textContent;
-      btn.textContent = "copied";
+      btn.textContent = "Copied!";
       setTimeout(() => { btn.textContent = old; }, 1500);
     });
   }
