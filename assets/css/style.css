@@ -256,6 +256,8 @@ a {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   border: none;
   outline: none;
+  position: relative;
+  z-index: 2;
 }
 
 .btn-primary {
@@ -474,6 +476,7 @@ section {
   background: radial-gradient(circle at top right, rgba(157, 78, 221, 0.1), transparent 50%);
   opacity: 0;
   transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .card:hover {
