@@ -65,38 +65,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Theme Toggle Logic
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeIconMoon = document.getElementById('theme-icon-moon');
-    const themeIconSun = document.getElementById('theme-icon-sun');
     
     // Check saved theme
-    const savedTheme = localStorage.getItem('omenspace-theme') || 'dark';
-    if (savedTheme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeIconMoon.style.display = 'none';
-        themeIconSun.style.display = 'block';
+    const savedTheme = localStorage.getItem('omenspace-theme') || 'light';
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
     }
     
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            let newTheme = 'dark';
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            let newTheme = currentTheme === 'light' ? 'dark' : 'light';
             
-            if (!currentTheme || currentTheme === 'dark') {
-                newTheme = 'light';
-                themeIconMoon.style.display = 'none';
-                themeIconSun.style.display = 'block';
+            if (newTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
             } else {
-                themeIconSun.style.display = 'none';
-                themeIconMoon.style.display = 'block';
+                document.documentElement.removeAttribute('data-theme');
             }
             
-            document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('omenspace-theme', newTheme);
         });
     }
 
-    // Sticky Navbar & Mobile Menu Logic
-    const navbar = document.getElementById('navbar');
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const headerMenu = document.getElementById('header-menu');
+    
+    if (mobileMenuBtn && headerMenu) {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            headerMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (headerMenu.classList.contains('active') && !headerMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                headerMenu.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking a link
+        const navLinksAnchor = headerMenu.querySelectorAll('.nav-links a');
+        navLinksAnchor.forEach(link => {
+            link.addEventListener('click', () => {
+                headerMenu.classList.remove('active');
+            });
+        });
+    }
+
+    // Sticky Navbar Logic
+    const navbar = document.querySelector('.header');
     
     let lastScrollY = window.scrollY;
     
@@ -163,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.lightbox-close');
 
     // Select all images that should be clickable
-    const images = document.querySelectorAll('.card-image-container img, .showcase-image img, .hero-image');
+    const images = document.querySelectorAll('.feature-img img, .alt-card-img, .hero-3d-composition img');
 
     images.forEach(img => {
         img.addEventListener('click', function() {
@@ -173,13 +191,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Get caption from alt text
             let captionText = this.alt;
             
-            // If it's a card, try to get the detailed paragraph text for a better description
-            if (this.closest('.card')) {
-                const p = this.closest('.card').querySelector('p');
+            // If it's a feature card, try to get the detailed paragraph text for a better description
+            if (this.closest('.feature-card')) {
+                const p = this.closest('.feature-card').querySelector('p');
                 if (p) captionText = p.textContent;
-            } else if (this.closest('.showcase-image')) {
-                // For showcase, grab the main text
-                const p = document.querySelector('.showcase-text p');
+            } else if (this.closest('.alt-card')) {
+                const p = this.closest('.alt-card').querySelector('p');
                 if (p) captionText = p.textContent;
             }
             
@@ -215,39 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Install Modal Logic
-    const installModal = document.getElementById('install-modal');
-    const openInstallBtns = document.querySelectorAll('.open-install');
-    const closeInstallBtn = document.querySelector('.install-close');
 
-    if (installModal) {
-        openInstallBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                installModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
 
-        const closeInstallModal = () => {
-            installModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        };
 
-        if (closeInstallBtn) {
-            closeInstallBtn.addEventListener('click', closeInstallModal);
-        }
-
-        installModal.addEventListener('click', (e) => {
-            if (e.target === installModal || e.target === installModal.querySelector('.lightbox-content-wrapper')) {
-                closeInstallModal();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && installModal.classList.contains('active')) {
-                closeInstallModal();
-            }
-        });
-    }
 });
