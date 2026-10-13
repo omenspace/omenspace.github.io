@@ -25,9 +25,9 @@
     <b id="lw">OMEN Space</b>
   </a>
   <nav>
-    <a href="#about" data-i18n="nav.about">Nedir?</a>
     <a href="#demo" data-i18n="nav.demo">Canlı Demo</a>
-    <a href="#features" data-i18n="nav.features">Özellikler</a>
+    <a href="#devices" data-i18n="nav.devices">Cihazlar & Özellikler</a>
+    <a href="#features" data-i18n="nav.features">Arayüz</a>
     <a href="#alternatives" data-i18n="nav.alternatives">Alternatifler</a>
     <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
     <div class="tools">
@@ -52,9 +52,9 @@
 
 <!-- MOBILE MENU -->
 <div id="menu">
-  <a href="#about" data-i18n="nav.about">Nedir?</a>
   <a href="#demo" data-i18n="nav.demo">Canlı Demo</a>
-  <a href="#features" data-i18n="nav.features">Özellikler</a>
+  <a href="#devices" data-i18n="nav.devices">Cihazlar & Özellikler</a>
+  <a href="#features" data-i18n="nav.features">Arayüz</a>
   <a href="#alternatives" data-i18n="nav.alternatives">Alternatifler</a>
   <a href="install.html" data-i18n="nav.download">İndir</a>
   <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
@@ -72,7 +72,6 @@
 
 <!-- SLIDE 1: HERO -->
 <section id="hero" class="slide"><span id="top"></span>
-  <img class="hero-bg" src="images/hero-dashboard.jpg" alt="OMEN Space Dashboard" width="1920" height="1080" fetchpriority="high">
   <div class="hero-in">
     <div>
       <div class="ph" id="ph"></div>
@@ -234,35 +233,92 @@
   </div>
 </section>
 
-<!-- SLIDE 3: ABOUT / WHY OMEN SPACE -->
-<section id="about" class="slide">
+<!-- SLIDE 3: SUPPORTED DEVICES & HARDWARE CAPABILITIES -->
+<section id="devices" class="slide"><span id="about"></span>
   <div class="wrap">
-    <div class="split">
-      <div class="prod zoom rv">
-        <img src="images/omen_laptop.png" alt="OMEN Laptop Hardware Control" width="600" height="420" loading="lazy">
-      </div>
-      <div>
-        <div class="lbl rv"><span data-i18n="nav.about">Nedir?</span></div>
-        <h2 class="rv" data-i18n="about.title">Neden OMEN Space?</h2>
-        <p class="rv" data-i18n="about.desc">OMEN Gaming Hub'ın Linux'ta olmamasının getirdiği tüm kısıtlamaları kaldırıyoruz. Cihazınızın fan devrinden işlemci voltajına kadar her detayı elinizin altına alıyoruz.</p>
-        <div class="stats">
-          <div class="card stat rv">
-            <h3 data-i18n="about.stat1.title">4+</h3>
-            <p data-i18n="about.stat1.desc">Farklı Kontrol Modülü</p>
-          </div>
-          <div class="card stat rv" style="--d:.08s">
-            <h3 data-i18n="about.stat2.title">%100</h3>
-            <p data-i18n="about.stat2.desc">Açık Kaynak Kodlu</p>
-          </div>
-          <div class="card stat rv" style="--d:.16s">
-            <h3 data-i18n="about.stat3.title">~0</h3>
-            <p data-i18n="about.stat3.desc">Sistem Kaynağı Tüketimi</p>
-          </div>
-          <div class="card stat rv" style="--d:.24s">
-            <h3 data-i18n="about.stat4.title">∞</h3>
-            <p data-i18n="about.stat4.desc">Kişiselleştirme İmkanı</p>
-          </div>
+    <div class="lbl rv"><span data-i18n="devices.badge">DESTEKLENEN EKOSİSTEM</span></div>
+    <h2 class="rv" data-i18n="devices.title">Tüm OMEN ve Victus Cihazlarıyla Uyumlu</h2>
+    <p class="sec-desc rv" data-i18n="devices.desc">Dizüstü bilgisayarlardan yüksek performanslı masaüstü sistemlere kadar tüm HP oyuncu ailesinde kusursuz ACPI, WMI ve SMU donanım desteği.</p>
+
+    <!-- Devices Grid -->
+    <div class="dev-grid rv">
+      <article class="dev-card zoom-trigger">
+        <div class="dev-img"><img src="images/omen_laptop.png" alt="OMEN 16 & 17" loading="lazy"></div>
+        <div class="dev-tag" data-i18n="devices.omen.tag">Amiral Gemisi Oyuncu</div>
+        <h3 data-i18n="devices.omen.title">OMEN 16 & 17</h3>
+        <p class="dev-sub" data-i18n="devices.omen.desc">4 bölgeli RGB, MUX switch ve üst düzey termal profiller.</p>
+      </article>
+
+      <article class="dev-card zoom-trigger" style="--d:.08s">
+        <div class="dev-img"><img src="images/victus_laptop.png" alt="Victus 15 & 16" loading="lazy"></div>
+        <div class="dev-tag" data-i18n="devices.victus.tag">Performans & F/P</div>
+        <h3 data-i18n="devices.victus.title">Victus 15 & 16</h3>
+        <p class="dev-sub" data-i18n="devices.victus.desc">Özel Victus fan denetimi, sessiz mod ve dengeli güç optimizasyonu.</p>
+      </article>
+
+      <article class="dev-card zoom-trigger" style="--d:.16s">
+        <div class="dev-img"><img src="images/transcend14.png" alt="OMEN Transcend 14" loading="lazy"></div>
+        <div class="dev-tag" data-i18n="devices.transcend.tag">Ultra İnce & OLED</div>
+        <h3 data-i18n="devices.transcend.title">OMEN Transcend 14</h3>
+        <p class="dev-sub" data-i18n="devices.transcend.desc">Hafif magnezyum kasa, OLED uyumu ve hibrit grafik desteği.</p>
+      </article>
+
+      <article class="dev-card zoom-trigger" style="--d:.24s">
+        <div class="dev-img"><img src="images/omen35l.png" alt="OMEN 35L & 45L" loading="lazy"></div>
+        <div class="dev-tag" data-i18n="devices.desktop.tag">Masaüstü Canavarları</div>
+        <h3 data-i18n="devices.desktop.title">OMEN 35L & 45L</h3>
+        <p class="dev-sub" data-i18n="devices.desktop.desc">Kasa ARGB aydınlatma, sıvı soğutma fan eğrileri ve BIOS kısıtsız TDP.</p>
+      </article>
+    </div>
+
+    <!-- Hardware Capabilities Underneath -->
+    <div class="cap-grid rv" style="--d:.28s">
+      <div class="cap-card">
+        <div class="cap-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"/></svg>
+          <span data-i18n="cap.1.title">Akıllı Fan & Termal Denetim</span>
         </div>
+        <p class="cap-desc" data-i18n="cap.1.desc">Auto, Max ve devir bazlı özel RPM kontrolü ile serin ve sessiz çalışma.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span data-i18n="cap.2.title">Intel RAPL & TDP Limitleri</span>
+        </div>
+        <p class="cap-desc" data-i18n="cap.2.desc">PL1 ve PL2 güç sınırlarını BIOS kısıtlamalarına takılmadan özgürce belirleyin.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+          <span data-i18n="cap.3.title">GPU & Dinamik MUX Switch</span>
+        </div>
+        <p class="cap-desc" data-i18n="cap.3.desc">Harici GPU doğrudan ekran bağlantısı veya pil tasarrufu için Hibrit grafik geçişi.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="6" cy="10" r="1"/><circle cx="10" cy="10" r="1"/><circle cx="14" cy="10" r="1"/><circle cx="18" cy="10" r="1"/></svg>
+          <span data-i18n="cap.4.title">RGB Stüdyo & Klavye</span>
+        </div>
+        <p class="cap-desc" data-i18n="cap.4.desc">Bölgesel ve tuş bazlı klavye ile kasa LED'lerini özel renk ve efektlerle kişiselleştirin.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-6 6"/></svg>
+          <span data-i18n="cap.5.title">Ryzen Undervolt & TCC</span>
+        </div>
+        <p class="cap-desc" data-i18n="cap.5.desc">Isınma ve throttling sorunlarına son veren voltaj düşürme ve tepe sıcaklık tavanı belirleme.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span data-i18n="cap.6.title">Quick HUD & Sıfır Kaynak</span>
+        </div>
+        <p class="cap-desc" data-i18n="cap.6.desc">Rust & GTK4 ile ~0 CPU/RAM tüketimi; Shift+F2 kısayolu ile oyun içi hızlı durum katmanı.</p>
       </div>
     </div>
   </div>
@@ -343,11 +399,10 @@
   </div>
 </section>
 
-<!-- SLIDE 7: INSTALL & CTA -->
+<!-- SLIDE 6: INSTALL & CTA -->
 <section id="install" class="slide">
   <div class="wrap">
-    <div class="zoom cpanel rv">
-      <img src="images/hero-dashboard.jpg" alt="" loading="lazy">
+    <div class="cpanel rv">
       <div class="lbl"><span data-i18n="nav.download">Kurulum</span></div>
       <div class="big" data-i18n="hero.title">Donanımınıza Hükmedin</div>
       <p class="sub" data-i18n="install.omenspace.desc">Linux üzerinde geliştirilmiş tam kapsamlı, modern ve inanılmaz hızlı donanım kontrol merkezi.</p>
