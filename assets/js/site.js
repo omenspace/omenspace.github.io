@@ -238,6 +238,122 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ---------- Hero 3D Card Stack (Interactive Slide Deck) ---------- */
+  const heroStack = $('.hero-stack');
+  if (heroStack) {
+    const cards = $$('.hs-card', heroStack);
+    const dots = $$('.hs-dot', heroStack);
+    let curIdx = 0;
+    let autoTimer = null;
+    let canHover = true;
+    let hoverCooldown = null;
+
+    function setSlot(idx) {
+      if (!cards.length) return;
+      curIdx = (idx + cards.length) % cards.length;
+
+      // Temporarily throttle hover triggers during transition to prevent accidental cascade
+      canHover = false;
+      if (hoverCooldown) clearTimeout(hoverCooldown);
+      hoverCooldown = setTimeout(() => { canHover = true; }, 320);
+
+      cards.forEach((card, i) => {
+        card.classList.remove('slot-front', 'slot-left', 'slot-right');
+        const diff = (i - curIdx + cards.length) % cards.length;
+        if (diff === 0) {
+          card.classList.add('slot-front');
+        } else if (diff === 1) {
+          card.classList.add('slot-left');
+        } else {
+          card.classList.add('slot-right');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('on', i === curIdx);
+      });
+    }
+
+    cards.forEach((card, i) => {
+      // Hovering over any card slides it to the front
+      card.addEventListener('mouseenter', () => {
+        stopAuto();
+        if (canHover && curIdx !== i) {
+          setSlot(i);
+        }
+      });
+
+      // Clicking a background card slides it to the front instead of opening lightbox
+      card.addEventListener('click', (e) => {
+        if (!card.classList.contains('slot-front')) {
+          e.stopPropagation();
+          e.preventDefault();
+          stopAuto();
+          setSlot(i);
+        }
+      }, true);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stopAuto();
+        setSlot(i);
+      });
+      dot.addEventListener('mouseenter', () => {
+        stopAuto();
+        setSlot(i);
+      });
+    });
+
+    // Touch swipe support (left / right)
+    let touchStartX = 0;
+    let touchStartY = 0;
+    heroStack.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    heroStack.addEventListener('touchend', (e) => {
+      if (e.changedTouches && e.changedTouches.length === 1) {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+          stopAuto();
+          if (dx < 0) {
+            setSlot(curIdx + 1);
+          } else {
+            setSlot(curIdx - 1);
+          }
+        }
+      }
+    }, { passive: true });
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(() => {
+        if (!document.hidden) {
+          setSlot(curIdx + 1);
+        }
+      }, 5000);
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    heroStack.addEventListener('mouseenter', stopAuto);
+    heroStack.addEventListener('mouseleave', startAuto);
+
+    setSlot(0);
+    startAuto();
+  }
+
   /* ---------- Lightbox Modal ---------- */
   const lightbox = $('#lightbox-modal');
   const lightboxImg = $('#lightbox-img');
@@ -249,6 +365,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const img = el.tagName === 'IMG' ? el : el.querySelector('img');
       if (!img) return;
       el.addEventListener('click', (e) => {
+        // If clicking a background card in hero-stack, ignore lightbox
+        if (el.classList.contains('hs-card') && !el.classList.contains('slot-front')) {
+          return;
+        }
         e.stopPropagation();
         lightbox.classList.add('active');
         lightboxImg.src = img.src;

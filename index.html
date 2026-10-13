@@ -90,17 +90,27 @@
       </div>
     </div>
 
-    <!-- 3D Layered Screenshots -->
+    <!-- 3D Interactive Sliding Screenshot Deck -->
     <div class="hero-stack rv" style="--d:.25s" aria-label="OMEN Space Arayüzü">
-      <div class="hs-card hs-sub1 zoom-trigger" title="RGB Stüdyosu">
-        <img src="images/keyboardpage.png" alt="RGB Stüdyosu" loading="eager">
-      </div>
-      <div class="hs-card hs-sub2 zoom-trigger" title="Ryzen Undervolt & Güç">
-        <img src="images/undervoltpage.png" alt="Ryzen Undervolt & Güç" loading="eager">
-      </div>
-      <div class="hs-card hs-main zoom-trigger" title="OMEN Space Performans Paneli">
+      <div class="hs-card slot-front zoom-trigger" data-idx="0" title="OMEN Space Performans Paneli">
+        <span class="hs-badge" data-i18n="feat.perf_badge">⚡ Performans</span>
         <img src="images/perfpage.png" alt="OMEN Space Performans Paneli" fetchpriority="high">
         <div class="hs-glow"></div>
+      </div>
+      <div class="hs-card slot-left zoom-trigger" data-idx="1" title="RGB Stüdyosu">
+        <span class="hs-badge" data-i18n="feat.2.title">RGB Stüdyosu</span>
+        <img src="images/keyboardpage.png" alt="RGB Stüdyosu" loading="eager">
+        <div class="hs-glow"></div>
+      </div>
+      <div class="hs-card slot-right zoom-trigger" data-idx="2" title="Ryzen Undervolt & Güç">
+        <span class="hs-badge" data-i18n="feat.3.title">Ryzen Undervolt</span>
+        <img src="images/undervoltpage.png" alt="Ryzen Undervolt & Güç" loading="eager">
+        <div class="hs-glow"></div>
+      </div>
+      <div class="hs-nav" aria-label="Ekran Görüntüsü Seçici">
+        <button class="hs-dot on" data-idx="0" aria-label="Performans"></button>
+        <button class="hs-dot" data-idx="1" aria-label="RGB Stüdyosu"></button>
+        <button class="hs-dot" data-idx="2" aria-label="Ryzen Undervolt"></button>
       </div>
     </div>
   </div>
