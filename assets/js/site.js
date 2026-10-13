@@ -9,9 +9,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentLangText = $('#current-lang');
   const langOptions = $$('.dd-m a');
 
-  function setLanguage(lang) {
+  // Automatic Device Language Detection (checks user's preferred OS/browser languages in order)
+  function detectDeviceLanguage() {
+    const supported = (typeof translations !== 'undefined')
+      ? Object.keys(translations)
+      : ['tr', 'en', 'zh', 'hi', 'es', 'fr', 'ar'];
+
+    const candidates = [];
+    if (navigator.languages && navigator.languages.length) {
+      for (const l of navigator.languages) {
+        if (l && typeof l === 'string') candidates.push(l);
+      }
+    }
+    if (navigator.language) candidates.push(navigator.language);
+    if (navigator.userLanguage) candidates.push(navigator.userLanguage);
+    if (navigator.browserLanguage) candidates.push(navigator.browserLanguage);
+
+    for (const raw of candidates) {
+      const code = raw.toLowerCase().split(/[-_]/)[0];
+      if (supported.includes(code)) {
+        return code;
+      }
+    }
+    return 'en';
+  }
+
+  function setLanguage(lang, persistUserChoice = false) {
     if (typeof translations === 'undefined' || !translations[lang]) lang = 'en';
-    localStorage.setItem('omenspace-lang', lang);
+
+    if (persistUserChoice) {
+      localStorage.setItem('omenspace-user-lang', lang);
+    }
+
     document.documentElement.lang = lang;
     document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
 
@@ -37,13 +66,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  window.setLanguage = setLanguage;
+  window.setLanguage = (lang) => setLanguage(lang, true);
+
   $$('.pills button').forEach(b => {
-    b.addEventListener('click', () => setLanguage(b.getAttribute('data-lang')));
+    b.addEventListener('click', () => setLanguage(b.getAttribute('data-lang'), true));
   });
 
-  let currentLang = localStorage.getItem('omenspace-lang') || (navigator.language || 'en').substring(0, 2);
-  setLanguage(currentLang);
+  // If the user has explicitly picked a language via switcher in the past, respect it;
+  // otherwise, detect device/OS/browser language automatically!
+  const explicitlyChosenLang = localStorage.getItem('omenspace-user-lang');
+  const activeLang = (explicitlyChosenLang && typeof translations !== 'undefined' && translations[explicitlyChosenLang])
+    ? explicitlyChosenLang
+    : detectDeviceLanguage();
+
+  setLanguage(activeLang, false);
 
   if (langToggle && langDropdown) {
     langToggle.addEventListener('click', (e) => {
@@ -54,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     langOptions.forEach(opt => {
       opt.addEventListener('click', (e) => {
         e.preventDefault();
-        setLanguage(opt.getAttribute('data-lang'));
+        setLanguage(opt.getAttribute('data-lang'), true);
         langDropdown.classList.remove('open');
       });
     });
