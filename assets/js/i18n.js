@@ -1,5 +1,10 @@
 const translations = {
     "tr": {
+        "nav.demo": "Canlı Demo",
+        "hero.demo": "Arayüzü Dene",
+        "demo.title": "Arayüzü şimdi deneyin",
+        "demo.desc": "Kurmadan önce OMEN Space'i keşfedin. Güç modlarını, fan profillerini, RGB efektlerini ve GPU modunu değiştirip canlı tepkileri görün.",
+        "demo.hint": "Bu bir simülasyondur — gerçek donanımınıza dokunmaz.",
         "title": "OMEN Space | Üstün Donanım Kontrolü",
         "nav.about": "Nedir?",
         "nav.features": "Özellikler",
@@ -47,6 +52,11 @@ const translations = {
         "footer.author_title": "Elektrik-Elektronik Mühendisi"
     },
     "en": {
+        "nav.demo": "Live Demo",
+        "hero.demo": "Try the UI",
+        "demo.title": "Try the interface right now",
+        "demo.desc": "Explore OMEN Space before installing. Switch power modes, fan profiles, RGB effects and GPU mode and watch it react live.",
+        "demo.hint": "This is a simulation — it never touches your real hardware.",
         "title": "OMEN Space | Ultimate Hardware Control",
         "nav.about": "What is it?",
         "nav.features": "Features",
@@ -94,6 +104,11 @@ const translations = {
         "footer.author_title": "Electrical & Electronics Engineer"
     },
     "zh": {
+        "nav.demo": "在线演示",
+        "hero.demo": "体验界面",
+        "demo.title": "立即体验界面",
+        "demo.desc": "安装前先探索 OMEN Space。切换性能模式、风扇方案、RGB 灯效和 GPU 模式，实时查看反应。",
+        "demo.hint": "这只是模拟，不会触及您的真实硬件。",
         "title": "OMEN Space | 终极硬件控制",
         "nav.about": "关于",
         "nav.features": "功能",
@@ -141,6 +156,11 @@ const translations = {
         "footer.author_title": "电气与电子工程师"
     },
     "hi": {
+        "nav.demo": "लाइव डेमो",
+        "hero.demo": "इंटरफ़ेस आज़माएँ",
+        "demo.title": "अभी इंटरफ़ेस आज़माएँ",
+        "demo.desc": "इंस्टॉल करने से पहले OMEN Space को एक्सप्लोर करें। पावर मोड, फ़ैन प्रोफ़ाइल, RGB इफ़ेक्ट और GPU मोड बदलकर लाइव प्रतिक्रिया देखें।",
+        "demo.hint": "यह केवल सिमुलेशन है — यह आपके असली हार्डवेयर को नहीं छूता।",
         "title": "OMEN Space | अंतिम हार्डवेयर नियंत्रण",
         "nav.about": "यह क्या है?",
         "nav.features": "विशेषताएं",
@@ -188,6 +208,11 @@ const translations = {
         "footer.author_title": "इलेक्ट्रिकल और इलेक्ट्रॉनिक्स इंजीनियर"
     },
     "es": {
+        "nav.demo": "Demo en vivo",
+        "hero.demo": "Probar la interfaz",
+        "demo.title": "Prueba la interfaz ahora",
+        "demo.desc": "Explora OMEN Space antes de instalarlo. Cambia modos de energía, perfiles de ventilador, efectos RGB y modo GPU y míralo reaccionar en vivo.",
+        "demo.hint": "Es una simulación: nunca toca tu hardware real.",
         "title": "OMEN Space | Control de Hardware Definitivo",
         "nav.about": "¿Qué es?",
         "nav.features": "Características",
@@ -235,6 +260,11 @@ const translations = {
         "footer.author_title": "Ingeniero Eléctrico y Electrónico"
     },
     "fr": {
+        "nav.demo": "Démo en direct",
+        "hero.demo": "Essayer l'interface",
+        "demo.title": "Essayez l'interface maintenant",
+        "demo.desc": "Découvrez OMEN Space avant de l'installer. Changez les modes d'alimentation, les profils de ventilateur, les effets RGB et le mode GPU et voyez la réaction en direct.",
+        "demo.hint": "Ceci est une simulation : elle ne touche jamais votre matériel réel.",
         "title": "OMEN Space | Contrôle Matériel Ultime",
         "nav.about": "À propos",
         "nav.features": "Fonctionnalités",
@@ -282,6 +312,11 @@ const translations = {
         "footer.author_title": "Ingénieur en Électrique et Électronique"
     },
     "ar": {
+        "nav.demo": "عرض مباشر",
+        "hero.demo": "جرّب الواجهة",
+        "demo.title": "جرّب الواجهة الآن",
+        "demo.desc": "اكتشف OMEN Space قبل التثبيت. بدّل أوضاع الطاقة وملفات المراوح وتأثيرات RGB ووضع GPU وشاهد الاستجابة مباشرة.",
+        "demo.hint": "هذه محاكاة — لا تلمس عتادك الحقيقي أبدًا.",
         "title": "OMEN Space | التحكم النهائي في الأجهزة",
         "nav.about": "حول",
         "nav.features": "الميزات",

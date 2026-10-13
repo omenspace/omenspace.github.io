@@ -1,217 +1,398 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="snap">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OMEN Space | Üstün Donanım Kontrolü</title>
-    <meta name="description" content="HP Omen ve Victus cihazlar için Linux üzerinde geliştirilmiş tam kapsamlı donanım kontrol merkezi.">
-    <link rel="icon" href="images/omenspace.png" type="image/png">
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=5.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>OMEN Space | Üstün Donanım Kontrolü</title>
+<meta name="description" content="HP Omen ve Victus cihazlar için Linux üzerinde geliştirilmiş tam kapsamlı donanım kontrol merkezi.">
+<meta name="theme-color" content="#090d14">
+<link rel="icon" href="images/omenspace.png" type="image/png">
+<script>document.documentElement.dataset.theme=localStorage.getItem('omenspace-theme')||'dark'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/demo.css">
 </head>
 <body>
+<div class="orb o1"></div><div class="orb o2"></div>
+<div id="bar"></div>
 
-    <div class="main-wrapper">
-        <!-- HEADER -->
-        <header class="header">
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menü">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-            </button>
-
-            <div class="logo">
-                <img src="images/omenspace.png" alt="OMEN Space" width="28" height="28" style="object-fit: contain;">
-                <span>OMEN Space</span>
-            </div>
-            
-            <div class="header-menu" id="header-menu">
-                <nav class="nav-links">
-                    <a href="#about" data-i18n="nav.about">Nedir?</a>
-                    <a href="#features" data-i18n="nav.features">Özellikler</a>
-                    <a href="#alternatives" data-i18n="nav.alternatives">Alternatifler</a>
-                    <a href="https://github.com/yunusemreyl/omen-space" target="_blank" data-i18n="nav.github">GitHub</a>
-                </nav>
-                
-                <div class="header-actions">
-                    <button id="theme-toggle" class="theme-btn" aria-label="Gece/Gündüz Modu" style="background: none; border: none; cursor: pointer; color: var(--text-main); display: flex; align-items: center; justify-content: center;">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                    </button>
-                    <div class="lang-selector custom-dropdown" id="lang-dropdown">
-                        <button class="dropdown-toggle" id="lang-toggle"><span id="current-lang">TR</span> ▾</button>
-                        <div class="dropdown-menu">
-                            <a href="#" data-lang="tr">Türkçe</a>
-                            <a href="#" data-lang="en">English</a>
-                            <a href="#" data-lang="zh">中文</a>
-                            <a href="#" data-lang="hi">हिन्दी</a>
-                            <a href="#" data-lang="es">Español</a>
-                            <a href="#" data-lang="fr">Français</a>
-                            <a href="#" data-lang="ar">العربية</a>
-                        </div>
-                    </div>
-                    <a href="install.html" class="btn btn-primary" data-i18n="nav.download">İndir</a>
-                </div>
-            </div>
-        </header>
-
-        <!-- HERO SECTION -->
-        <section class="hero-section">
-            <div class="hero-card">
-                <div class="hero-content">
-                    <div class="hero-tag">Linux Donanım Kontrol Merkezi</div>
-                    <h1 class="hero-title" data-i18n="hero.title">Donanımınıza Hükmedin</h1>
-                    <p class="hero-desc" data-i18n="hero.desc">
-                        HP Omen ve Victus cihazlar için geliştirilmiş, tam kapsamlı ve inanılmaz hızlı açık kaynak kontrol merkezi.
-                    </p>
-                    <a href="install.html" class="btn btn-white" data-i18n="hero.cta">Hemen Kurun</a>
-                </div>
-                <div class="hero-3d-composition">
-                    <img src="images/perfpage.png" alt="OMEN Space Dashboard" class="hero-img-main">
-                    <img src="images/keyboardpage.png" alt="RGB Studio" class="hero-img-sub1">
-                    <img src="images/undervoltpage.png" alt="Undervolt" class="hero-img-sub2">
-                </div>
-            </div>
-        </section>
-
-        <!-- STATS / ABOUT SECTION -->
-        <section class="stats-section" id="about">
-            <div class="stats-left">
-                <h2 class="section-title" data-i18n="about.title">Neden OMEN Space?</h2>
-                <p class="section-desc" data-i18n="about.desc">OMEN Gaming Hub'ın Linux'ta olmamasının getirdiği tüm kısıtlamaları kaldırıyoruz. Cihazınızın fan devrinden işlemci voltajına kadar her detayı elinizin altına alıyoruz.</p>
-            </div>
-            <div class="stats-right">
-                <div class="stat-item">
-                    <h3 data-i18n="about.stat1.title">4+</h3>
-                    <p data-i18n="about.stat1.desc">Farklı Kontrol Modülü</p>
-                </div>
-                <div class="stat-item">
-                    <h3 data-i18n="about.stat2.title">%100</h3>
-                    <p data-i18n="about.stat2.desc">Açık Kaynak Kodlu</p>
-                </div>
-                <div class="stat-item">
-                    <h3 data-i18n="about.stat3.title">~0</h3>
-                    <p data-i18n="about.stat3.desc">Sistem Kaynağı Tüketimi</p>
-                </div>
-                <div class="stat-item">
-                    <h3 data-i18n="about.stat4.title">∞</h3>
-                    <p data-i18n="about.stat4.desc">Kişiselleştirme İmkanı</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- CATALOG / FEATURES SECTION -->
-        <section class="features-section" id="features">
-            <div class="section-header-center" style="margin-bottom: 40px;">
-                <h2 class="section-title" data-i18n="feat.title">Sınırsız Özellikler</h2>
-                <p class="section-desc" data-i18n="feat.desc">Donanımınızın potansiyelini son damlasına kadar kullanın. Her şey tek bir şık arayüzde.</p>
-            </div>
-            <div class="feature-grid-4">
-                <div class="feature-card reveal">
-                    <div class="feature-img">
-                        <img src="images/profilepage.png" alt="Güç">
-                    </div>
-                    <div class="feature-info">
-                        <h4 data-i18n="feat.1.title">Uygulamalara Özel Profiller</h4>
-                        <p data-i18n="feat.1.desc">Favori oyunlarınız ve uygulamalarınız için özel güç ve fan profilleri atayın.</p>
-                    </div>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-img">
-                        <img src="images/keyboardpage.png" alt="RGB">
-                    </div>
-                    <div class="feature-info">
-                        <h4 data-i18n="feat.2.title">RGB Stüdyosu</h4>
-                        <p data-i18n="feat.2.desc">Klavye aydınlatmanızı bölgesel veya tuş bazlı kişiselleştirin.</p>
-                    </div>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-img">
-                        <img src="images/undervoltpage.png" alt="Undervolt">
-                    </div>
-                    <div class="feature-info">
-                        <h4 data-i18n="feat.3.title">Ryzen Undervolt</h4>
-                        <p data-i18n="feat.3.desc">Isınma sorunlarına son. İşlemcinizin voltaj limitlerini belirleyin.</p>
-                    </div>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-img">
-                        <img src="images/muxpage.png" alt="MUX">
-                    </div>
-                    <div class="feature-info">
-                        <h4 data-i18n="feat.4.title">MUX Switch</h4>
-                        <p data-i18n="feat.4.desc">Doğrudan GPU bağlantısı veya hibrit mod arasında geçiş yapın.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- HOW IT WORKS / ALTERNATIVES -->
-        <section class="alternatives-section" id="alternatives">
-            <div class="section-header-center">
-                <h2 class="section-title" data-i18n="alt.title">Alternatif Çözümler</h2>
-                <p class="section-desc" data-i18n="alt.desc">Windows kullanıcıları veya farklı yaklaşımlar arayanlar için topluluğun geliştirdiği diğer değerli açık kaynak projeler.</p>
-            </div>
-            
-            <div class="alt-grid">
-                <div class="alt-card reveal">
-                    <img src="images/ohman.png" alt="Ohman Dashboard" class="alt-card-img">
-                    <div class="alt-card-info">
-                        <h4 data-i18n="alt.ohman.title">Ohman (Windows)</h4>
-                        <p data-i18n="alt.ohman.desc">Windows için reklamsız ve hafif OMEN Gaming Hub alternatifi.</p>
-                        <a href="https://github.com/P4R1H/ohman" target="_blank" class="alt-github-link">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                            <span data-i18n="install.github_btn">GitHub'da İncele</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="alt-card reveal">
-                    <img src="images/omencore.png" alt="OmenCore" class="alt-card-img">
-                    <div class="alt-card-info">
-                        <h4 data-i18n="alt.omencore.title">OmenCore</h4>
-                        <p data-i18n="alt.omencore.desc">Termal profiller için Linux altında çalışan temel CLI aracı.</p>
-                        <a href="https://github.com/theantipopau/omencore" target="_blank" class="alt-github-link">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-                            <span data-i18n="install.github_btn">GitHub'da İncele</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="footer-content" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px; width: 100%;">
-                <div class="footer-left">
-                    <div class="footer-logo">
-                        <img src="images/omenspace.png" alt="OMEN Space" width="20" height="20" style="vertical-align: middle; margin-right: 8px;">
-                        OMEN Space
-                    </div>
-                    <div class="footer-copy" data-i18n="footer.copy">© 2026 OMEN Space. GPL-3.0 Lisanslıdır.</div>
-                </div>
-                <div class="footer-right" style="text-align: right;">
-                    <div style="font-weight: 600; color: var(--text-main);">Yunus Emre YILMAZ</div>
-                    <div style="font-size: 0.9rem; color: #94a3b8; margin-top: 4px;" data-i18n="footer.author_title">Elektrik-Elektronik Mühendisi</div>
-                    <a href="https://github.com/yunusemreyl" target="_blank" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; color: var(--brand-blue); text-decoration: none;">github.com/yunusemreyl</a>
-                </div>
-            </div>
-        </footer>
-    </div> <!-- /.main-wrapper -->
-
-    <!-- Lightbox Modal -->
-    <div id="lightbox-modal" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <div class="lightbox-content-wrapper">
-            <img class="lightbox-content" id="lightbox-img">
-            <div id="lightbox-caption" style="color: white; text-align: center; margin-top: 10px; font-size: 1.1rem; font-weight: 500;"></div>
+<!-- HEADER -->
+<header id="hd">
+  <a class="logo" href="#top" aria-label="OMEN Space">
+    <span id="dock"></span>
+    <b id="lw">OMEN Space</b>
+  </a>
+  <nav>
+    <a href="#about" data-i18n="nav.about">Nedir?</a>
+    <a href="#demo" data-i18n="nav.demo">Canlı Demo</a>
+    <a href="#features" data-i18n="nav.features">Özellikler</a>
+    <a href="#alternatives" data-i18n="nav.alternatives">Alternatifler</a>
+    <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
+    <div class="tools">
+      <div class="dd" id="lang-dropdown">
+        <button class="dd-t" id="lang-toggle"><span id="current-lang">TR</span> ▾</button>
+        <div class="dd-m">
+          <a href="#" data-lang="tr">Türkçe</a>
+          <a href="#" data-lang="en">English</a>
+          <a href="#" data-lang="zh">中文</a>
+          <a href="#" data-lang="hi">हिन्दी</a>
+          <a href="#" data-lang="es">Español</a>
+          <a href="#" data-lang="fr">Français</a>
+          <a href="#" data-lang="ar">العربية</a>
         </div>
+      </div>
+      <button class="tg" aria-label="Gece/Gündüz Modu">☀</button>
+      <a href="install.html" class="btn main dl" data-i18n="nav.download">İndir ↗</a>
+    </div>
+  </nav>
+  <button id="burger" aria-label="Menü" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<!-- MOBILE MENU -->
+<div id="menu">
+  <a href="#about" data-i18n="nav.about">Nedir?</a>
+  <a href="#demo" data-i18n="nav.demo">Canlı Demo</a>
+  <a href="#features" data-i18n="nav.features">Özellikler</a>
+  <a href="#alternatives" data-i18n="nav.alternatives">Alternatifler</a>
+  <a href="install.html" data-i18n="nav.download">İndir</a>
+  <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
+  <div class="tools">
+    <div class="pills">
+      <button data-lang="tr" onclick="window.setLanguage?.('tr')">TR</button>
+      <button data-lang="en" onclick="window.setLanguage?.('en')">EN</button>
+      <button data-lang="de" onclick="window.setLanguage?.('es')">ES</button>
+      <button data-lang="zh" onclick="window.setLanguage?.('zh')">ZH</button>
+      <button data-lang="ar" onclick="window.setLanguage?.('ar')">AR</button>
+    </div>
+    <button class="tg" aria-label="Tema Değiştir">☀</button>
+  </div>
+</div>
+
+<!-- SLIDE 1: HERO -->
+<section id="hero" class="slide"><span id="top"></span>
+  <img class="hero-bg" src="images/hero-dashboard.jpg" alt="OMEN Space Dashboard" width="1920" height="1080" fetchpriority="high">
+  <div class="hero-in">
+    <div>
+      <div class="ph" id="ph"></div>
+      <span class="tag">Linux Donanım Kontrol Merkezi</span>
+      <h1>
+        <span class="ln"><span data-i18n="hero.title">Donanımınıza Hükmedin</span></span>
+      </h1>
+      <p class="lead" data-i18n="hero.desc">HP Omen ve Victus cihazlar için geliştirilmiş, tam kapsamlı ve inanılmaz hızlı açık kaynak kontrol merkezi.</p>
+      <div class="btns">
+        <a href="#install" class="btn main" data-i18n="hero.cta">Hemen Kurun ↗</a>
+        <a href="#demo" class="btn" data-i18n="hero.demo">Arayüzü Dene ↗</a>
+        <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" class="btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" style="margin-right:2px"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub ↗
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="mq"><div id="mq"></div></div>
+</section>
+
+<!-- FLOATING DOCKING LOGO -->
+<a id="av" href="#top" aria-label="OMEN Space">
+  <img src="images/omenspace.png" alt="OMEN Space Logo" width="100" height="100">
+</a>
+
+<!-- SLIDE 2: LIVE INTERACTIVE DEMO -->
+<section id="demo" class="slide">
+  <div class="wrap">
+    <div class="demo-head">
+      <div class="lbl rv"><span data-i18n="nav.demo">Canlı Demo</span></div>
+      <h2 class="rv" data-i18n="demo.title">Arayüzü şimdi deneyin</h2>
+      <p class="sec-desc rv" data-i18n="demo.desc">Kurmadan önce OMEN Space'i keşfedin. Güç modlarını, fan profillerini, RGB efektlerini ve GPU modunu değiştirip canlı tepkileri görün.</p>
     </div>
 
-    <script src="assets/js/i18n.js"></script>
-    <script src="assets/js/main.js"></script>
+    <div class="demo-stage rv">
+      <div class="omen-app" id="omenApp">
+        <div class="oa-titlebar">
+          <span class="oa-ic">&#9776;</span>
+          <div class="oa-title"><img src="images/omenspace.png" width="20" height="20" alt=""> OMEN SPACE</div>
+          <div class="oa-wc"><i></i><i></i><i class="x"></i></div>
+        </div>
+        <div class="oa-body">
+          <nav class="oa-side" aria-label="OMEN Space demo">
+            <button class="on" data-page="perf" aria-label="Performance" title="Performance"><svg viewBox="0 0 24 24"><path d="M4 18a9 9 0 1 1 16 0"/><path d="M12 14l4-5"/></svg></button>
+            <button data-page="power" aria-label="Advanced Power" title="Advanced Power"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></button>
+            <button data-page="gpu" aria-label="Graphics" title="Graphics"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></button>
+            <button data-page="rgb" aria-label="RGB Studio" title="RGB Studio"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></button>
+            <span class="grow"></span>
+            <button id="hudBtn" aria-label="Quick HUD (Shift+F2)" title="Quick HUD (Shift+F2)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 15l3-4 3 3 4-6"/></svg></button>
+          </nav>
+          <main class="oa-main">
+
+            <!-- PERFORMANCE TAB -->
+            <section class="oa-page on" data-page="perf">
+              <div class="oa-dev">
+                <h4>Victus by HP Gaming Laptop 16-r0xxx</h4>
+                <dt>CPU</dt><dd>Intel Core i5-13500H &middot; 16 Threads</dd>
+                <dt>GPU</dt><dd>NVIDIA GeForce RTX 4050 Laptop GPU &middot; 6 GB VRAM</dd>
+                <dt>RAM</dt><dd>15 GB</dd>
+              </div>
+              <div class="oa-top">
+                <div><div class="oa-h">Performance</div><div class="oa-sub">Manage BIOS profiles to get the best performance from your hardware.</div></div>
+                <span class="oa-badge">Daemon</span>
+              </div>
+              <div class="oa-label" style="margin-top:0">Performance modes</div>
+              <div class="oa-grid g3">
+                <button class="oa-opt" data-g="mode" data-v="eco" style="--c:#3ddc97"><span class="d"></span><span><b>Eco</b><small>Battery saver</small></span></button>
+                <button class="oa-opt on" data-g="mode" data-v="balanced" style="--c:#62b0ff"><span class="d"></span><span><b>Balanced</b><small>Recommended balance</small></span></button>
+                <button class="oa-opt" data-g="mode" data-v="performance" style="--c:#ff4d6d"><span class="d"></span><span><b>Performance</b><small>Maximum power</small></span></button>
+              </div>
+              <div class="oa-label">Fan modes</div>
+              <div class="oa-grid g4">
+                <button class="oa-opt on" data-g="fan" data-v="auto" style="--c:#62b0ff"><span class="d"></span><span><b>Auto</b><small>Smart cooling</small></span></button>
+                <button class="oa-opt" data-g="fan" data-v="max" style="--c:#ff4d6d"><span class="d"></span><span><b>Max</b><small>Max cooling</small></span></button>
+                <button class="oa-opt" data-g="fan" data-v="custom" style="--c:#b57bff"><span class="d"></span><span><b>Custom</b><small>User defined</small></span></button>
+                <button class="oa-opt" data-g="fan" data-v="quiet" style="--c:#3ddc97"><span class="d"></span><span><b>Quiet</b><small>Preset</small></span></button>
+              </div>
+              <div class="oa-list" id="customRow" hidden>
+                <div class="oa-row"><div><b>Custom fan speed</b><small>Drag to set a fixed fan speed</small></div>
+                  <div class="oa-ctl"><input class="oa-range" type="range" min="1500" max="6000" step="100" value="3500" data-s="custom"><output data-o="custom"></output></div></div>
+              </div>
+              <div class="oa-stats">
+                <div class="oa-card"><h5><span>CPU</span><em id="cT">43&deg;C</em></h5>
+                  <div class="oa-sm"><span>TEMP</span><span>LOAD</span></div>
+                  <div class="oa-meter"><i id="cBar" style="--c:#ff4d6d"></i></div><div class="oa-sm"><span></span><span id="cL">6%</span></div>
+                  <div class="oa-pair"><div><span>PWR</span><b id="cP">8.8W</b></div><div><span>FAN</span><b id="cF">2400 RPM</b></div></div></div>
+                <div class="oa-card"><h5><span>GPU</span><em id="gT">36&deg;C</em></h5>
+                  <div class="oa-sm"><span>TEMP</span><span>LOAD</span></div>
+                  <div class="oa-meter"><i id="gBar" style="--c:#3b9eff"></i></div><div class="oa-sm"><span></span><span id="gL">0%</span></div>
+                  <div class="oa-pair"><div><span>PWR</span><b id="gP">3.7W</b></div><div><span>FAN</span><b id="gF">2400 RPM</b></div></div></div>
+                <div class="oa-card"><h5><span>Device Status</span></h5>
+                  <div class="oa-sm"><span>RAM</span><span>15 GB RAM</span></div>
+                  <div class="oa-meter"><i id="ramBar" style="--c:#a855f7"></i></div><div class="oa-sm"><span></span><span id="ramT">8.2 / 15.3 GB</span></div>
+                  <div class="oa-sm" style="margin-top:12px"><span>SSD</span><span>512 GB NVMe</span></div>
+                  <div class="oa-meter"><i id="ssdBar" style="--c:#f97316;width:5%"></i></div><div class="oa-sm"><span></span><span>23 / 473 GB</span></div></div>
+              </div>
+            </section>
+
+            <!-- ADVANCED POWER TAB -->
+            <section class="oa-page" data-page="power">
+              <div class="oa-h">Advanced Power</div>
+              <div class="oa-sub">Adjust power limits for advanced thermal management. Please use with caution.</div>
+              <div class="oa-label" style="margin-top:0">Power limits (Intel RAPL / MSR)</div>
+              <div class="oa-list">
+                <div class="oa-row"><div><b>PL1 &mdash; Long Duration Power Limit</b><small>Base TDP: 45W | Configurable: 25W - 75W</small></div>
+                  <div class="oa-ctl"><input class="oa-range" type="range" min="25" max="75" value="45" data-s="pl1"><output data-o="pl1"></output></div></div>
+                <div class="oa-row"><div><b>PL2 &mdash; Short Duration Turbo Limit</b><small>Base Turbo: 95W | Configurable: 45W - 115W</small></div>
+                  <div class="oa-ctl"><input class="oa-range" type="range" min="45" max="115" value="56" data-s="pl2"><output data-o="pl2"></output></div></div>
+                <div class="oa-row"><div><b>TCC Offset (Max CPU Temperature)</b><small>Target peak temperature: 100&deg;C - TCC Offset</small></div>
+                  <div class="oa-ctl"><input class="oa-range" type="range" min="0" max="30" value="0" data-s="tcc"><output data-o="tcc" style="min-width:150px"></output></div></div>
+              </div>
+              <div class="oa-actions"><button class="oa-btn" id="pwReset">Reset to Defaults</button><button class="oa-btn p" id="pwApply">Apply &amp; Save</button></div>
+            </section>
+
+            <!-- GRAPHICS TAB -->
+            <section class="oa-page" data-page="gpu">
+              <div class="oa-h">Graphics Switcher</div>
+              <div class="oa-sub">Select GPU operation mode. Changes may require a system restart.</div>
+              <div class="oa-grid g3">
+                <button class="oa-opt tall on" data-g="gpu" data-v="hybrid" style="--c:#62b0ff"><span class="hd"><span class="d"></span><span><b>Hybrid</b><small>Auto Switch (Recommended)</small></span></span><p>Uses integrated GPU for daily tasks and discrete graphics for heavy games.</p></button>
+                <button class="oa-opt tall" data-g="gpu" data-v="discrete" style="--c:#ff4d6d"><span class="hd"><span class="d"></span><span><b>Discrete</b><small>Discrete Mode</small></span></span><p>Integrated GPU is disabled. All displays connect directly to the discrete GPU.</p></button>
+                <button class="oa-opt tall" data-g="gpu" data-v="advanced" style="--c:#b57bff"><span class="hd"><span class="d"></span><span><b>Advanced</b><small>Advanced / Optimus</small></span></span><p>Advanced MUX mode with dynamic switching (Only on supported devices).</p></button>
+              </div>
+              <div class="oa-list oa-info">
+                <div class="oa-row"><div><small>Internal Panel (eDP-1) 1920x1080 @ 144Hz</small></div><div style="text-align:right"><span class="oa-pill" id="gpuRoute">eDP-1 &rarr; Intel Integrated Graphics (Hybrid)</span></div></div>
+                <div class="oa-row"><div><b>Graphics Card Model</b><small>Discrete Graphics Unit (dGPU)</small></div><div style="text-align:right;color:var(--mut)">NVIDIA GeForce RTX 4050 Laptop GPU &middot; 6 GB VRAM</div></div>
+                <div class="oa-row"><div><b>Driver Version</b><small>NVIDIA Linux Graphics Driver</small></div><div style="text-align:right;color:var(--mut)">615.71.09 (NVIDIA Open Kernel)</div></div>
+              </div>
+            </section>
+
+            <!-- RGB STUDIO TAB -->
+            <section class="oa-page" data-page="rgb">
+              <div class="oa-h">RGB Studio</div>
+              <div class="oa-sub">Customize keyboard and lightbar RGB colors and effects.</div>
+              <div class="oa-list" style="margin-top:0">
+                <div class="oa-row"><div><b>Keyboard Effect</b></div>
+                  <select class="oa-select" id="rgbEffect"><option value="static">Static</option><option value="breathing">Breathing</option><option value="wave">Wave</option><option value="cycle" selected>Color Cycle</option></select></div>
+                <div class="oa-row"><div><b>Effect Speed</b></div><div class="oa-ctl"><input class="oa-range" type="range" min="10" max="100" value="50" data-s="speed"><output data-o="speed"></output></div></div>
+                <div class="oa-row"><div><b>Keyboard Brightness</b></div><div class="oa-ctl"><input class="oa-range" type="range" min="0" max="100" value="100" data-s="bright"><output data-o="bright"></output></div></div>
+              </div>
+              <div class="oa-label">Keyboard color map</div>
+              <div class="oa-sub" style="margin-bottom:8px">Pick a color, or click any key to paint it.</div>
+              <div class="oa-pal" id="rgbPal"></div>
+              <div class="oa-kb" id="rgbKb"></div>
+            </section>
+
+          </main>
+        </div>
+        <div class="oa-hud" id="oaHud" hidden>
+          <h6>QUICK HUD &middot; SHIFT+F2</h6>
+          <p id="hudLine"></p>
+          <div><button id="hudMode">Mode &#9656;</button><button id="hudFan">Fan &#9656;</button></div>
+        </div>
+        <div class="oa-toast" id="oaToast" role="status"></div>
+      </div>
+      <p class="demo-hint" data-i18n="demo.hint">Bu bir simülasyondur — gerçek donanımınıza dokunmaz.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: ABOUT / WHY OMEN SPACE -->
+<section id="about" class="slide">
+  <div class="wrap">
+    <div class="split">
+      <div class="prod zoom rv">
+        <img src="images/omen_laptop.png" alt="OMEN Laptop Hardware Control" width="600" height="420" loading="lazy">
+      </div>
+      <div>
+        <div class="lbl rv"><span data-i18n="nav.about">Nedir?</span></div>
+        <h2 class="rv" data-i18n="about.title">Neden OMEN Space?</h2>
+        <p class="rv" data-i18n="about.desc">OMEN Gaming Hub'ın Linux'ta olmamasının getirdiği tüm kısıtlamaları kaldırıyoruz. Cihazınızın fan devrinden işlemci voltajına kadar her detayı elinizin altına alıyoruz.</p>
+        <div class="stats">
+          <div class="card stat rv">
+            <h3 data-i18n="about.stat1.title">4+</h3>
+            <p data-i18n="about.stat1.desc">Farklı Kontrol Modülü</p>
+          </div>
+          <div class="card stat rv" style="--d:.08s">
+            <h3 data-i18n="about.stat2.title">%100</h3>
+            <p data-i18n="about.stat2.desc">Açık Kaynak Kodlu</p>
+          </div>
+          <div class="card stat rv" style="--d:.16s">
+            <h3 data-i18n="about.stat3.title">~0</h3>
+            <p data-i18n="about.stat3.desc">Sistem Kaynağı Tüketimi</p>
+          </div>
+          <div class="card stat rv" style="--d:.24s">
+            <h3 data-i18n="about.stat4.title">∞</h3>
+            <p data-i18n="about.stat4.desc">Kişiselleştirme İmkanı</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: FEATURES PART 1 -->
+<section id="features" class="slide">
+  <div class="wrap">
+    <div class="lbl rv"><span data-i18n="nav.features">Özellikler</span> &bull; 01</div>
+    <h2 class="rv" data-i18n="feat.title">Sınırsız Özellikler</h2>
+    <p class="sec-desc rv" data-i18n="feat.desc">Donanımınızın potansiyelini son damlasına kadar kullanın. Her şey tek bir şık arayüzde.</p>
+    <div class="grid">
+      <article class="card pcard rv">
+        <div class="zoom pimg"><img src="images/profilepage.png" alt="Uygulamalara Özel Profiller" loading="lazy"></div>
+        <div class="pbody">
+          <h4 data-i18n="feat.1.title">Uygulamalara Özel Profiller</h4>
+          <p data-i18n="feat.1.desc">Favori oyunlarınız ve uygulamalarınız için özel güç ve fan profilleri atayın.</p>
+        </div>
+      </article>
+      <article class="card pcard rv" style="--d:.1s">
+        <div class="zoom pimg"><img src="images/keyboardpage.png" alt="RGB Stüdyosu" loading="lazy"></div>
+        <div class="pbody">
+          <h4 data-i18n="feat.2.title">RGB Stüdyosu</h4>
+          <p data-i18n="feat.2.desc">Klavye aydınlatmanızı bölgesel veya tuş bazlı kişiselleştirin.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: FEATURES PART 2 -->
+<section id="features2" class="slide">
+  <div class="wrap">
+    <div class="lbl rv"><span data-i18n="nav.features">Özellikler</span> &bull; 02</div>
+    <div class="grid">
+      <article class="card pcard rv">
+        <div class="zoom pimg"><img src="images/undervoltpage.png" alt="Ryzen Undervolt" loading="lazy"></div>
+        <div class="pbody">
+          <h4 data-i18n="feat.3.title">Ryzen Undervolt</h4>
+          <p data-i18n="feat.3.desc">Isınma sorunlarına son. İşlemcinizin voltaj limitlerini belirleyin.</p>
+        </div>
+      </article>
+      <article class="card pcard rv" style="--d:.1s">
+        <div class="zoom pimg"><img src="images/muxpage.png" alt="MUX Switch" loading="lazy"></div>
+        <div class="pbody">
+          <h4 data-i18n="feat.4.title">MUX Switch</h4>
+          <p data-i18n="feat.4.desc">Doğrudan GPU bağlantısı veya hibrit mod arasında geçiş yapın.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: ALTERNATIVES -->
+<section id="alternatives" class="slide">
+  <div class="wrap">
+    <div class="lbl rv"><span data-i18n="nav.alternatives">Alternatifler</span></div>
+    <h2 class="rv" data-i18n="alt.title">Alternatif Çözümler</h2>
+    <p class="sec-desc rv" data-i18n="alt.desc">Windows kullanıcıları veya farklı yaklaşımlar arayanlar için topluluğun geliştirdiği diğer değerli açık kaynak projeler.</p>
+    <div class="grid">
+      <article class="card pcard rv">
+        <div class="zoom pimg contain"><img src="images/ohman.png" alt="Ohman Windows" loading="lazy"></div>
+        <div class="pbody">
+          <h4 data-i18n="alt.ohman.title">Ohman (Windows)</h4>
+          <p data-i18n="alt.ohman.desc">Windows için reklamsız ve hafif OMEN Gaming Hub alternatifi.</p>
+          <a href="https://github.com/P4R1H/ohman" target="_blank" rel="noopener" class="btn">GitHub'da İncele ↗</a>
+        </div>
+      </article>
+      <article class="card pcard rv" style="--d:.1s">
+        <div class="zoom pimg contain"><img src="images/omencore.png" alt="OmenCore CLI" loading="lazy"></div>
+        <div class="pbody">
+          <h4 data-i18n="alt.omencore.title">OmenCore</h4>
+          <p data-i18n="alt.omencore.desc">Termal profiller için Linux altında çalışan temel CLI aracı.</p>
+          <a href="https://github.com/theantipopau/omencore" target="_blank" rel="noopener" class="btn">GitHub'da İncele ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7: INSTALL & CTA -->
+<section id="install" class="slide">
+  <div class="wrap">
+    <div class="zoom cpanel rv">
+      <img src="images/hero-dashboard.jpg" alt="" loading="lazy">
+      <div class="lbl"><span data-i18n="nav.download">Kurulum</span></div>
+      <div class="big" data-i18n="hero.title">Donanımınıza Hükmedin</div>
+      <p class="sub" data-i18n="install.omenspace.desc">Linux üzerinde geliştirilmiş tam kapsamlı, modern ve inanılmaz hızlı donanım kontrol merkezi.</p>
+      
+      <!-- Terminal Installer Block -->
+      <div class="term" style="max-width:700px;margin-bottom:24px">
+        <div class="term-h">
+          <span>TERMINAL &middot; TEK KOMUTLA KURULUM</span>
+          <button class="copy-btn" data-copy="curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash">Kopyala</button>
+        </div>
+        <pre><code>curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash</code></pre>
+      </div>
+
+      <div class="btns">
+        <a href="install.html" class="btn main" data-i18n="nav.download">Detaylı Kurulum Rehberi ↗</a>
+        <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" class="btn">GitHub Deposu ↗</a>
+        <a href="https://github.com/yunusemreyl/omen-space/releases" target="_blank" rel="noopener" class="btn">Releases ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="flogo">
+      <img src="images/omenspace.png" alt="OMEN Space Logo">
+      <span>OMEN Space</span>
+    </div>
+    <span data-i18n="footer.copy">© 2026 OMEN Space. GPL-3.0 Lisanslıdır.</span>
+    <div>
+      <b>Yunus Emre YILMAZ</b> &middot; <a href="https://github.com/yunusemreyl" target="_blank" rel="noopener">github.com/yunusemreyl</a>
+    </div>
+  </footer>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox-modal" class="lightbox" role="dialog" aria-modal="true">
+  <div class="lb-wrap">
+    <button class="lb-close" aria-label="Kapat">&times;</button>
+    <img id="lightbox-img" src="" alt="Görsel">
+    <div class="lb-cap" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/demo.js"></script>
 </body>
 </html>
