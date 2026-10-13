@@ -221,10 +221,31 @@ footer b{color:var(--txt);font-weight:700}
 /* install page */
 .page{padding:120px var(--pad) 0;max-width:1240px;margin:auto}
 .page-head{max-width:640px;margin-bottom:34px}
-.ig{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:start}
-@media(max-width:900px){.ig{grid-template-columns:1fr}}
 .col-t{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:14px}
-.stack{display:flex;flex-direction:column;gap:18px}
+
+/* Featured top card for OMEN Space */
+.install-featured{margin-bottom:36px}
+.install-main-card{overflow:hidden}
+.install-main-grid{display:grid;grid-template-columns:1.15fr 1fr;align-items:stretch}
+.install-main-img{height:100%;min-height:360px;cursor:zoom-in}
+.install-main-img img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.install-main-body{padding:clamp(22px,3.5vw,36px);display:flex;flex-direction:column;justify-content:center}
+.install-main-body h4{font-size:clamp(1.3rem,2.2vw,1.7rem);margin-bottom:8px}
+
+/* Dual alternatives grid directly underneath OMEN Space */
+.install-alts{margin-bottom:60px}
+.alt-dual-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.alt-dual-grid .pcard{display:flex;flex-direction:column;height:100%}
+.alt-dual-grid .pimg{height:clamp(160px,22svh,240px);background:#12151d}
+.alt-dual-grid .pbody{display:flex;flex-direction:column;flex:1}
+.alt-dual-grid .pbody .btn{margin-top:auto;align-self:flex-start}
+
+@media(max-width:960px){
+  .install-main-grid{grid-template-columns:1fr}
+  .install-main-img{height:clamp(180px,32svh,280px);min-height:auto}
+  .alt-dual-grid{grid-template-columns:1fr;gap:16px}
+}
+
 .term{margin:16px 0 4px;border-radius:14px;overflow:hidden;background:#0d1117;border:1px solid rgba(255,255,255,.08);direction:ltr;text-align:left}
 .term-h{display:flex;justify-content:space-between;align-items:center;padding:8px 8px 8px 14px;font-size:.72rem;letter-spacing:.1em;color:#8b949e;border-bottom:1px solid rgba(255,255,255,.08)}
 .term-h button{background:rgba(255,255,255,.08);border:0;border-radius:8px;color:#e6edf3;font:600 .72rem var(--sans);padding:6px 12px;cursor:pointer;transition:background .25s}

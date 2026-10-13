@@ -77,16 +77,17 @@
     <p class="sec-desc" data-i18n="install.desc">Linux için OMEN Space veya Windows için topluluk alternatifleri.</p>
   </div>
 
-  <div class="ig">
-    <!-- Linux Column -->
-    <div class="col">
-      <div class="col-t" data-i18n="install.linux">Linux (OMEN Space)</div>
-      <article class="card pcard rv">
-        <div class="zoom pimg">
+  <!-- 1. OMEN Space (Featured Full-Width Card) -->
+  <div class="install-featured rv">
+    <div class="col-t" data-i18n="install.linux">Linux &middot; Resmi İstemci (OMEN Space)</div>
+    <article class="card pcard install-main-card">
+      <div class="install-main-grid">
+        <div class="zoom pimg install-main-img zoom-trigger">
           <img src="images/perfpage.png" alt="OMEN Space Dashboard" loading="lazy">
         </div>
-        <div class="pbody">
-          <h4>OMEN Space</h4>
+        <div class="pbody install-main-body">
+          <span class="tag" style="margin-bottom:12px;align-self:flex-start">Tam Donanım Kontrolü</span>
+          <h4 style="font-size:1.5rem;margin-bottom:6px">OMEN Space</h4>
           <p data-i18n="install.omenspace.desc">Linux üzerinde geliştirilmiş tam kapsamlı, modern ve inanılmaz hızlı donanım kontrol merkezi.</p>
           
           <div class="term">
@@ -100,37 +101,38 @@
           <div class="btns" style="margin-top:16px">
             <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" class="btn main" data-i18n="install.github_btn">GitHub'da İncele ↗</a>
             <a href="https://github.com/yunusemreyl/omen-space/releases" target="_blank" rel="noopener" class="btn">Releases ↗</a>
+            <a href="index.html#demo" class="btn">Arayüzü Dene ↗</a>
           </div>
         </div>
-      </article>
-    </div>
-
-    <!-- Windows Column -->
-    <div class="col">
-      <div class="col-t" data-i18n="install.windows">Windows (Alternatifler)</div>
-      <div class="stack">
-        <article class="card pcard rv">
-          <div class="zoom pimg contain">
-            <img src="images/ohman.png" alt="Ohman" loading="lazy">
-          </div>
-          <div class="pbody">
-            <h4>Ohman</h4>
-            <p data-i18n="install.ohman.desc">Hafif ve reklamsız OGH alternatifi. Temel güç ve fan kontrolü.</p>
-            <a href="https://github.com/P4R1H/ohman" target="_blank" rel="noopener" class="btn" data-i18n="install.github_btn">GitHub'da İncele ↗</a>
-          </div>
-        </article>
-
-        <article class="card pcard rv" style="--d:.1s">
-          <div class="zoom pimg contain">
-            <img src="images/omencore.png" alt="OmenCore" loading="lazy">
-          </div>
-          <div class="pbody">
-            <h4>OmenCore</h4>
-            <p data-i18n="install.omencore.desc">Temel fan ve güç kontrolü.</p>
-            <a href="https://github.com/theantipopau/omencore" target="_blank" rel="noopener" class="btn" data-i18n="install.github_btn">GitHub'da İncele ↗</a>
-          </div>
-        </article>
       </div>
+    </article>
+  </div>
+
+  <!-- 2. Windows Alternatives (Directly underneath OMEN Space, 2-column full-width grid) -->
+  <div class="install-alts rv" style="--d:.12s">
+    <div class="col-t" data-i18n="install.windows">Windows &middot; Topluluk Alternatifleri</div>
+    <div class="alt-dual-grid">
+      <article class="card pcard">
+        <div class="zoom pimg contain zoom-trigger">
+          <img src="images/ohman.png" alt="Ohman" loading="lazy">
+        </div>
+        <div class="pbody">
+          <h4 style="font-size:1.15rem;margin-bottom:6px">Ohman (Windows)</h4>
+          <p data-i18n="install.ohman.desc">Hafif ve reklamsız OGH alternatifi. Temel güç ve fan kontrolü.</p>
+          <a href="https://github.com/P4R1H/ohman" target="_blank" rel="noopener" class="btn" data-i18n="install.github_btn">GitHub'da İncele ↗</a>
+        </div>
+      </article>
+
+      <article class="card pcard" style="--d:.1s">
+        <div class="zoom pimg contain zoom-trigger">
+          <img src="images/omencore.png" alt="OmenCore" loading="lazy">
+        </div>
+        <div class="pbody">
+          <h4 style="font-size:1.15rem;margin-bottom:6px">OmenCore</h4>
+          <p data-i18n="install.omencore.desc">C# ve .NET ile geliştirilmiş gelişmiş donanım ve performans kontrol merkezi. Hassas özel fan eğrileri, termal profiller, BIOS güç modları, RGB yönetimi ve detaylı donanım telemetrisi sunar.</p>
+          <a href="https://github.com/theantipopau/omencore" target="_blank" rel="noopener" class="btn" data-i18n="install.github_btn">GitHub'da İncele ↗</a>
+        </div>
+      </article>
     </div>
   </div>
 </main>
