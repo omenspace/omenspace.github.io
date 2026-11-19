@@ -1,37 +1,39 @@
 <!DOCTYPE html>
-<html lang="tr" class="noslide">
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>İndir | OMEN Space</title>
-<meta name="description" content="OMEN Space kurulum ekranı. Linux ve Windows için alternatifler.">
-<meta name="theme-color" content="#090d14">
+<title>Install | OMEN Space</title>
+<meta name="description" content="Install OMEN Space on Linux (Ubuntu, Fedora, Arch, Artix OpenRC, openSUSE, NixOS) or view Windows community alternatives.">
+<meta name="theme-color" content="#0b0c0e">
 <link rel="icon" href="images/omenspace.png" type="image/png">
 <script>document.documentElement.dataset.theme=localStorage.getItem('omenspace-theme')||'dark'</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
-<div class="orb o1"></div><div class="orb o2"></div>
-<div id="bar"></div>
+<body data-keep-title="1">
 
-<!-- HEADER -->
-<header id="hd" class="s">
-  <a class="logo" href="index.html" aria-label="OMEN Space">
-    <img class="lgi" src="images/omenspace.png" width="34" height="34" alt="OMEN Space Logo">
-    <b>OMEN Space</b>
-  </a>
-  <nav>
-    <a href="index.html#demo" data-i18n="nav.demo">Canlı Demo</a>
-    <a href="index.html#devices" data-i18n="nav.devices">Cihazlar & Özellikler</a>
-    <a href="index.html#features" data-i18n="nav.features">Arayüz</a>
-    <a href="index.html#alternatives" data-i18n="nav.alternatives">Alternatifler</a>
-    <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
-    <div class="tools">
+<header class="site-header">
+  <div class="wrap hdr-in">
+    <a class="brand" href="index.html">
+      <img src="images/omenspace.png" alt="OMEN Space" width="24" height="24">
+      <span>OMEN Space</span>
+      <span class="ver-tag">v2.3.0</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#demo" data-i18n="nav.demo">Canlı Demo</a>
+      <a href="index.html#devices" data-i18n="nav.devices">Cihazlar &amp; Özellikler</a>
+      <a href="index.html#features" data-i18n="nav.features">Arayüz</a>
+      <a href="index.html#alternatives" data-i18n="nav.alternatives">Alternatifler</a>
+      <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
+    </nav>
+
+    <div class="hdr-tools">
       <div class="dd" id="lang-dropdown">
-        <button class="dd-t" id="lang-toggle"><span id="current-lang">TR</span> ▾</button>
+        <button class="dd-t" id="lang-toggle" type="button"><span id="current-lang">TR</span> ▾</button>
         <div class="dd-m">
           <a href="#" data-lang="tr">Türkçe</a>
           <a href="#" data-lang="en">English</a>
@@ -42,118 +44,127 @@
           <a href="#" data-lang="ar">العربية</a>
         </div>
       </div>
-      <button class="tg" aria-label="Gece/Gündüz Modu">☀</button>
-      <a href="https://github.com/yunusemreyl/omen-space/releases" target="_blank" rel="noopener" class="btn main dl">Releases ↗</a>
+      <button class="icon-btn tg" type="button" aria-label="Toggle theme">☀</button>
+      <a href="https://github.com/yunusemreyl/omen-space/releases/tag/v2.3.0" target="_blank" rel="noopener" class="btn btn-primary btn-sm dl-btn">v2.3.0 ↗</a>
+      <button id="burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
     </div>
-  </nav>
-  <button id="burger" aria-label="Menü" aria-expanded="false"><i></i><i></i></button>
+  </div>
 </header>
 
-<!-- MOBILE MENU -->
 <div id="menu">
   <a href="index.html#demo" data-i18n="nav.demo">Canlı Demo</a>
-  <a href="index.html#devices" data-i18n="nav.devices">Cihazlar & Özellikler</a>
+  <a href="index.html#devices" data-i18n="nav.devices">Cihazlar &amp; Özellikler</a>
   <a href="index.html#features" data-i18n="nav.features">Arayüz</a>
   <a href="index.html#alternatives" data-i18n="nav.alternatives">Alternatifler</a>
   <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
-  <a href="https://github.com/yunusemreyl/omen-space/releases" target="_blank" rel="noopener">Releases</a>
-  <div class="tools">
+  <div class="mob-tools">
     <div class="pills">
-      <button data-lang="tr" onclick="window.setLanguage?.('tr')">TR</button>
-      <button data-lang="en" onclick="window.setLanguage?.('en')">EN</button>
-      <button data-lang="es" onclick="window.setLanguage?.('es')">ES</button>
-      <button data-lang="zh" onclick="window.setLanguage?.('zh')">ZH</button>
-      <button data-lang="ar" onclick="window.setLanguage?.('ar')">AR</button>
+      <button type="button" data-lang="tr">TR</button>
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="es">ES</button>
+      <button type="button" data-lang="fr">FR</button>
+      <button type="button" data-lang="zh">ZH</button>
+      <button type="button" data-lang="hi">HI</button>
+      <button type="button" data-lang="ar">AR</button>
     </div>
-    <button class="tg" aria-label="Tema Değiştir">☀</button>
+    <button class="icon-btn tg" type="button" aria-label="Toggle theme">☀</button>
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
-<main class="page">
-  <div class="page-head rv">
-    <div class="lbl"><span data-i18n="nav.download">Kurulum</span></div>
+<main class="page-main">
+  <div class="wrap">
+    <div class="sec-kicker" data-i18n="nav.download">İndir</div>
     <h1 data-i18n="install.title">Platformunuzu Seçin</h1>
-    <p class="sec-desc" data-i18n="install.desc">Linux için OMEN Space veya Windows için topluluk alternatifleri.</p>
-  </div>
+    <p class="hero-lead" data-i18n="install.desc">Linux için OMEN Space veya Windows için topluluk alternatifleri.</p>
 
-  <!-- 1. OMEN Space (Featured Full-Width Card) -->
-  <div class="install-featured rv">
-    <div class="col-t" data-i18n="install.linux">Linux &middot; Resmi İstemci (OMEN Space)</div>
-    <article class="card pcard install-main-card">
-      <div class="install-main-grid">
-        <div class="zoom pimg install-main-img zoom-trigger">
-          <img src="images/perfpage.png" alt="OMEN Space Dashboard" loading="lazy">
-        </div>
-        <div class="pbody install-main-body">
-          <span class="tag" style="margin-bottom:12px;align-self:flex-start">Tam Donanım Kontrolü</span>
-          <h4 style="font-size:1.5rem;margin-bottom:6px">OMEN Space</h4>
-          <p data-i18n="install.omenspace.desc">Linux üzerinde geliştirilmiş tam kapsamlı, modern ve inanılmaz hızlı donanım kontrol merkezi.</p>
-          
-          <div class="term">
-            <div class="term-h">
-              <span>TERMINAL &middot; TEK KOMUTLA KURULUM</span>
-              <button class="copy-btn" data-copy="curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash">Kopyala</button>
+    <div class="section-label" data-i18n="install.linux">Linux (OMEN Space)</div>
+    <div class="install-panel">
+      <div class="install-split">
+        <div>
+          <h2 style="margin-bottom:8px">OMEN Space v2.3.0</h2>
+          <p class="sec-desc" data-i18n="install.omenspace.desc">Linux üzerinde geliştirilmiş tam kapsamlı, modern ve inanılmaz hızlı donanım kontrol merkezi.</p>
+
+          <div class="cmd-stack">
+            <div>
+              <div class="cmd-label">Stable Release (Recommended)</div>
+              <div class="cmd-box" style="margin-bottom:0">
+                <code><span class="prompt">$</span>curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash</code>
+                <button class="copy-btn" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash">Copy</button>
+              </div>
             </div>
-            <pre><code>curl -sSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | sudo bash</code></pre>
+
+            <div>
+              <div class="cmd-label">Latest main branch (Canary)</div>
+              <div class="cmd-box" style="margin-bottom:0">
+                <code><span class="prompt">$</span>curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash -s -- --canary</code>
+                <button class="copy-btn" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash -s -- --canary">Copy</button>
+              </div>
+            </div>
           </div>
 
-          <div class="btns" style="margin-top:16px">
-            <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" class="btn main" data-i18n="install.github_btn">GitHub'da İncele ↗</a>
+          <div class="hero-actions" style="margin-bottom:0">
+            <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="install.github_btn">GitHub'da İncele</a>
             <a href="https://github.com/yunusemreyl/omen-space/releases" target="_blank" rel="noopener" class="btn">Releases ↗</a>
-            <a href="index.html#demo" class="btn">Arayüzü Dene ↗</a>
+            <a href="index.html#demo" class="btn" data-i18n="hero.demo">Arayüzü Dene</a>
           </div>
+        </div>
+
+        <div>
+          <ul class="distro-list">
+            <li><strong>Kernel Drivers</strong><span>hp-wmi + hp-omen-extra (DKMS)</span></li>
+            <li><strong>Secure Boot</strong><span>Auto MOK signing (.ko.zst/.xz)</span></li>
+            <li><strong>Init Systems</strong><span>systemd &amp; OpenRC (Artix)</span></li>
+            <li><strong>Uninstall</strong><span>sudo ./setup.sh uninstall</span></li>
+            <li><strong>Diagnostics</strong><span>1-Click GitHub Dump in Debug Center</span></li>
+          </ul>
         </div>
       </div>
-    </article>
-  </div>
+    </div>
 
-  <!-- 2. Windows Alternatives (Directly underneath OMEN Space, 2-column full-width grid) -->
-  <div class="install-alts rv" style="--d:.12s">
-    <div class="col-t" data-i18n="install.windows">Windows &middot; Topluluk Alternatifleri</div>
-    <div class="alt-dual-grid">
-      <article class="card pcard">
-        <div class="zoom pimg contain zoom-trigger">
-          <img src="images/ohman.png" alt="Ohman" loading="lazy">
-        </div>
-        <div class="pbody">
-          <h4 style="font-size:1.15rem;margin-bottom:6px">Ohman (Windows)</h4>
+    <div class="section-label" data-i18n="install.windows">Windows (Alternatifler)</div>
+    <div class="gallery-grid">
+      <article class="shot-card">
+        <div class="shot-img contain" data-zoom><img src="images/ohman.png" alt="Ohman (Windows)" loading="lazy"></div>
+        <div class="shot-body">
+          <h3 data-i18n="alt.ohman.title">Ohman (Windows)</h3>
           <p data-i18n="install.ohman.desc">Hafif ve reklamsız OGH alternatifi. Temel güç ve fan kontrolü.</p>
-          <a href="https://github.com/P4R1H/ohman" target="_blank" rel="noopener" class="btn" data-i18n="install.github_btn">GitHub'da İncele ↗</a>
+          <a href="https://github.com/P4R1H/ohman" target="_blank" rel="noopener" class="btn btn-sm" data-i18n="install.github_btn">GitHub'da İncele</a>
         </div>
       </article>
 
-      <article class="card pcard" style="--d:.1s">
-        <div class="zoom pimg contain zoom-trigger">
-          <img src="images/omencore.png" alt="OmenCore" loading="lazy">
-        </div>
-        <div class="pbody">
-          <h4 style="font-size:1.15rem;margin-bottom:6px">OmenCore</h4>
+      <article class="shot-card">
+        <div class="shot-img contain" data-zoom><img src="images/omencore.png" alt="OmenCore" loading="lazy"></div>
+        <div class="shot-body">
+          <h3 data-i18n="alt.omencore.title">OmenCore</h3>
           <p data-i18n="install.omencore.desc">C# ve .NET ile geliştirilmiş gelişmiş donanım ve performans kontrol merkezi. Hassas özel fan eğrileri, termal profiller, BIOS güç modları, RGB yönetimi ve detaylı donanım telemetrisi sunar.</p>
-          <a href="https://github.com/theantipopau/omencore" target="_blank" rel="noopener" class="btn" data-i18n="install.github_btn">GitHub'da İncele ↗</a>
+          <a href="https://github.com/theantipopau/omencore" target="_blank" rel="noopener" class="btn btn-sm" data-i18n="install.github_btn">GitHub'da İncele</a>
         </div>
       </article>
     </div>
   </div>
 </main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="flogo">
-    <img src="images/omenspace.png" alt="OMEN Space Logo">
-    <span>OMEN Space</span>
-  </div>
-  <span data-i18n="footer.copy">© 2026 OMEN Space. GPL-3.0 Lisanslıdır.</span>
-  <div>
-    <b>Yunus Emre YILMAZ</b> &middot; <a href="https://github.com/yunusemreyl" target="_blank" rel="noopener">github.com/yunusemreyl</a>
+<footer class="site-footer" style="border-top:1px solid var(--border)">
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <img src="images/omenspace.png" alt="OMEN Space" width="20" height="20">
+      <span>OMEN Space</span>
+    </div>
+    <span data-i18n="footer.copy">&copy; 2026 OMEN Space. GPL-3.0 Lisanslıdır.</span>
+    <div class="foot-links">
+      <a href="https://yunusemreyl.github.io" target="_blank" rel="noopener">Yunus Emre Yılmaz</a>
+      <span>&middot;</span>
+      <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener">GitHub</a>
+      <span>&middot;</span>
+      <a href="index.html">Home</a>
+    </div>
   </div>
 </footer>
 
-<!-- Lightbox Modal -->
-<div id="lightbox-modal" class="lightbox" role="dialog" aria-modal="true">
+<div id="lightbox-modal" class="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button class="lb-close" type="button" aria-label="Close">&times;</button>
   <div class="lb-wrap">
-    <button class="lb-close" aria-label="Kapat">&times;</button>
-    <img id="lightbox-img" src="" alt="Görsel">
+    <img id="lightbox-img" src="" alt="">
     <div class="lb-cap" id="lightbox-caption"></div>
   </div>
 </div>
