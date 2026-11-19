@@ -1,19 +1,18 @@
 /* ===== OMEN Space — Interactive Linux UI Simulator (clean desktop frame) ===== */
 
 .demo-stage {
-  border: 1px solid var(--border-strong);
-  border-radius: var(--r-lg);
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
   background: #0d0e11;
-  padding: clamp(10px, 1.8vw, 20px);
-  box-shadow: var(--shadow);
+  padding: clamp(8px, 1.5vw, 16px);
 }
 
 .demo-hint {
   text-align: center;
-  color: var(--txt-3);
-  font-family: var(--font-mono);
+  color: var(--ink-3);
+  font-family: var(--mono);
   font-size: 0.74rem;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .omen-app {

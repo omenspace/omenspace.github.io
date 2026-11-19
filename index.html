@@ -2,15 +2,12 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>OMEN Space | Linux Hardware Control for HP OMEN &amp; Victus</title>
-<meta name="description" content="Open-source Rust &amp; GTK4 hardware control center and Linux kernel driver for HP OMEN and Victus laptops and desktops.">
-<meta name="theme-color" content="#0b0c0e">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OMEN Space — HP OMEN ve Victus için Linux donanım kontrolü</title>
+<meta name="description" content="HP OMEN ve Victus bilgisayarlar için açık kaynaklı Linux çekirdek sürücüsü (hp-wmi / hp-omen-extra) ve GTK4 kontrol arayüzü.">
+<meta name="theme-color" content="#0f1114">
 <link rel="icon" href="images/omenspace.png" type="image/png">
 <script>document.documentElement.dataset.theme=localStorage.getItem('omenspace-theme')||'dark'</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/demo.css">
 </head>
@@ -19,16 +16,15 @@
 <header class="site-header">
   <div class="wrap hdr-in">
     <a class="brand" href="#top">
-      <img src="images/omenspace.png" alt="OMEN Space" width="24" height="24">
+      <img src="images/omenspace.png" alt="OMEN Space" width="22" height="22">
       <span>OMEN Space</span>
-      <span class="ver-tag">v2.3.0</span>
+      <span class="ver">v2.3.0</span>
     </a>
 
     <nav class="nav-links" aria-label="Primary">
-      <a href="#demo" data-i18n="nav.demo">Canlı Demo</a>
-      <a href="#devices" data-i18n="nav.devices">Cihazlar &amp; Özellikler</a>
-      <a href="#features" data-i18n="nav.features">Arayüz</a>
-      <a href="#alternatives" data-i18n="nav.alternatives">Alternatifler</a>
+      <a href="#features" data-i18n="nav.features">Özellikler</a>
+      <a href="#demo" data-i18n="nav.demo">Demo</a>
+      <a href="#install" data-i18n="nav.install">Kurulum</a>
       <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
     </nav>
 
@@ -46,18 +42,16 @@
         </div>
       </div>
       <button class="icon-btn tg" type="button" aria-label="Toggle theme">☀</button>
-      <a href="install.html" class="btn btn-primary btn-sm dl-btn" data-i18n="nav.download">İndir</a>
       <button id="burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
     </div>
   </div>
 </header>
 
 <div id="menu">
-  <a href="#demo" data-i18n="nav.demo">Canlı Demo</a>
-  <a href="#devices" data-i18n="nav.devices">Cihazlar &amp; Özellikler</a>
-  <a href="#features" data-i18n="nav.features">Arayüz</a>
-  <a href="#alternatives" data-i18n="nav.alternatives">Alternatifler</a>
-  <a href="install.html" data-i18n="nav.download">İndir</a>
+  <a href="#features" data-i18n="nav.features">Özellikler</a>
+  <a href="#demo" data-i18n="nav.demo">Demo</a>
+  <a href="#install" data-i18n="nav.install">Kurulum</a>
+  <a href="install.html">Install Page</a>
   <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
   <div class="mob-tools">
     <div class="pills">
@@ -77,90 +71,94 @@
   <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <div class="hero-top">
-        <div class="eyebrow">
-          <span class="dot" aria-hidden="true"></span>
-          <span>LINUX · RUST + GTK4 · GPL-3.0</span>
-          <span>&middot;</span>
-          <a href="https://github.com/yunusemreyl/omen-space/releases/tag/v2.3.0" target="_blank" rel="noopener">v2.3.0 Release ↗</a>
-        </div>
+      <h1 data-i18n="hero.title">HP OMEN ve Victus için Linux donanım kontrolü</h1>
+      <p class="lead" data-i18n="hero.desc">Fan hızı, güç profilleri, GPU MUX geçişi, CPU güç limitleri ve klavye RGB aydınlatması için açık kaynaklı Linux çekirdek sürücüsü (hp-wmi / hp-omen-extra) ve GTK4 arayüzü.</p>
 
-        <h1 data-i18n="hero.title">Donanımınıza Hükmedin</h1>
-        <p class="hero-lead" data-i18n="hero.desc">HP Omen ve Victus cihazlar için geliştirilmiş, tam kapsamlı ve inanılmaz hızlı açık kaynak kontrol merkezi.</p>
-
-        <div class="cmd-box">
-          <code><span class="prompt">$</span>curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash</code>
-          <button class="copy-btn" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash">Copy</button>
-        </div>
-
-        <div class="hero-actions">
-          <a href="install.html" class="btn btn-primary" data-i18n="hero.cta">Hemen Kurun</a>
-          <a href="#demo" class="btn" data-i18n="hero.demo">Arayüzü Dene</a>
-          <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" class="btn">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-            GitHub ↗
-          </a>
-        </div>
+      <div class="cmd-box">
+        <code><span class="prompt">$</span>curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash</code>
+        <button class="copy-btn" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash">Copy</button>
       </div>
 
-      <!-- Tabbed Real Application Screenshot Showcase -->
+      <div class="hero-links">
+        <a href="install.html" class="btn btn-primary" data-i18n="hero.install">Kurulum Rehberi</a>
+        <a href="#demo" class="btn" data-i18n="hero.demo">Tarayıcıda Dene</a>
+        <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener" class="text-link">GitHub</a>
+        <a href="https://github.com/yunusemreyl/omen-space/releases/tag/v2.3.0" target="_blank" rel="noopener" class="text-link">v2.3.0</a>
+      </div>
+
+      <!-- Real Application Screenshots -->
       <div class="showcase">
         <div class="showcase-bar">
-          <div class="showcase-tabs" role="tablist" aria-label="Application screens">
-            <button class="sc-tab on" type="button" data-src="images/perfpage.png" data-meta="omen-gui · Performance &amp; Fans">Performance</button>
-            <button class="sc-tab" type="button" data-src="images/keyboardpage.png" data-meta="omen-gui · HID LampArray &amp; 4-Zone RGB" data-i18n="feat.2.title">RGB Studio</button>
-            <button class="sc-tab" type="button" data-src="images/undervoltpage.png" data-meta="omen-gui · Intel RAPL &amp; Ryzen SMU" data-i18n="feat.3.title">Undervolt &amp; Power</button>
-            <button class="sc-tab" type="button" data-src="images/muxpage.png" data-meta="omen-gui · Hybrid / Discrete MUX" data-i18n="feat.4.title">MUX Switch</button>
-            <button class="sc-tab" type="button" data-src="images/profilepage.png" data-meta="omen-gui · Per-App Automation" data-i18n="feat.1.title">App Profiles</button>
-            <button class="sc-tab" type="button" data-src="images/diagpage.png" data-meta="omen-gui · Debug Center &amp; System Dump">Debug Center</button>
+          <div class="showcase-tabs" role="tablist" aria-label="Screenshots">
+            <button class="sc-tab on" type="button" data-src="images/perfpage.png" data-meta="Performance &amp; Fans">Performance</button>
+            <button class="sc-tab" type="button" data-src="images/keyboardpage.png" data-meta="Keyboard &amp; Lightbar RGB">RGB</button>
+            <button class="sc-tab" type="button" data-src="images/undervoltpage.png" data-meta="Power Limits &amp; Undervolt">Power / Undervolt</button>
+            <button class="sc-tab" type="button" data-src="images/muxpage.png" data-meta="GPU MUX Switch">MUX</button>
+            <button class="sc-tab" type="button" data-src="images/profilepage.png" data-meta="Per-App Profiles">App Profiles</button>
+            <button class="sc-tab" type="button" data-src="images/diagpage.png" data-meta="Debug Center">Debug Center</button>
           </div>
-          <span class="showcase-meta" id="showcaseMeta">omen-gui · Performance &amp; Fans</span>
+          <span class="showcase-meta" id="showcaseMeta">Performance &amp; Fans</span>
         </div>
         <div class="showcase-stage" data-zoom>
-          <img id="showcaseImg" src="images/perfpage.png" alt="OMEN Space Performance Dashboard" fetchpriority="high">
+          <img id="showcaseImg" src="images/perfpage.png" alt="OMEN Space Performance screen" fetchpriority="high">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ARCHITECTURE SPEC STRIP -->
-  <section class="spec-strip" aria-label="Technical specifications">
+  <!-- FEATURES -->
+  <section id="features" class="sec">
     <div class="wrap">
-      <div class="spec-grid">
-        <div class="spec-cell">
-          <div class="spec-k">RUNTIME</div>
-          <div class="spec-v">Rust + GTK4</div>
-          <div class="spec-sub">Native D-Bus daemon, ~0% idle overhead</div>
+      <h2 data-i18n="sec.what">Neleri kontrol eder?</h2>
+      <div class="cap-list" style="margin-top:20px">
+        <div class="cap-item">
+          <h3 data-i18n="cap.1.title">Fan ve termal profiller</h3>
+          <p data-i18n="cap.1.desc"></p>
         </div>
-        <div class="spec-cell">
-          <div class="spec-k">HARDWARE DB</div>
-          <div class="spec-v">97 Boards</div>
-          <div class="spec-sub">81 community-verified OMEN &amp; Victus models</div>
+        <div class="cap-item">
+          <h3 data-i18n="cap.2.title">CPU güç limitleri ve undervolt</h3>
+          <p data-i18n="cap.2.desc"></p>
         </div>
-        <div class="spec-cell">
-          <div class="spec-k">INIT &amp; BOOT</div>
-          <div class="spec-v">systemd &amp; OpenRC</div>
-          <div class="spec-sub">DKMS + Secure Boot MOK (.ko.zst / .ko.xz)</div>
+        <div class="cap-item">
+          <h3 data-i18n="cap.3.title">GPU MUX geçişi</h3>
+          <p data-i18n="cap.3.desc"></p>
         </div>
-        <div class="spec-cell">
-          <div class="spec-k">LICENSE</div>
-          <div class="spec-v">GPL-3.0</div>
-          <div class="spec-sub">Zero telemetry, zero ads, 100% open source</div>
+        <div class="cap-item">
+          <h3 data-i18n="cap.4.title">Klavye ve kasa RGB</h3>
+          <p data-i18n="cap.4.desc"></p>
+        </div>
+        <div class="cap-item">
+          <h3 data-i18n="cap.5.title">Uygulama profilleri ve HUD</h3>
+          <p data-i18n="cap.5.desc"></p>
+        </div>
+        <div class="cap-item">
+          <h3 data-i18n="cap.6.title">Debug Center ve sistem dökümü</h3>
+          <p data-i18n="cap.6.desc"></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- INTERACTIVE LIVE SIMULATOR -->
+  <!-- COMPATIBILITY -->
+  <section id="compatibility" class="sec">
+    <div class="wrap">
+      <h2 data-i18n="sec.compat">Desteklenen cihazlar ve dağıtımlar</h2>
+      <p class="sec-desc" data-i18n="compat.note"></p>
+      <dl class="spec-table">
+        <div class="spec-row"><dt data-i18n="compat.c1.k"></dt><dd data-i18n="compat.c1.v"></dd></div>
+        <div class="spec-row"><dt data-i18n="compat.c2.k"></dt><dd data-i18n="compat.c2.v"></dd></div>
+        <div class="spec-row"><dt data-i18n="compat.c3.k"></dt><dd data-i18n="compat.c3.v"></dd></div>
+        <div class="spec-row"><dt data-i18n="compat.c4.k"></dt><dd data-i18n="compat.c4.v"></dd></div>
+        <div class="spec-row"><dt data-i18n="compat.c5.k"></dt><dd data-i18n="compat.c5.v"></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- LIVE BROWSER DEMO -->
   <section id="demo" class="sec">
     <div class="wrap">
-      <div class="sec-head">
-        <div class="sec-head-copy">
-          <div class="sec-kicker" data-i18n="nav.demo">Canlı Demo</div>
-          <h2 data-i18n="demo.title">Arayüzü şimdi deneyin</h2>
-          <p class="sec-desc" data-i18n="demo.desc">Kurmadan önce OMEN Space'i keşfedin. Güç modlarını, fan profillerini, RGB efektlerini ve GPU modunu değiştirip canlı tepkileri görün.</p>
-        </div>
-      </div>
+      <h2 data-i18n="sec.demo">Arayüz simülasyonu</h2>
+      <p class="sec-desc" data-i18n="demo.desc"></p>
 
       <div class="demo-stage">
         <div class="omen-app" id="omenApp">
@@ -179,7 +177,6 @@
               <button id="hudBtn" type="button" aria-label="Quick HUD (Shift+F2)" title="Quick HUD (Shift+F2)"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 15l3-4 3 3 4-6"/></svg></button>
             </nav>
             <div class="oa-main">
-              <!-- PERFORMANCE TAB -->
               <section class="oa-page on" data-page="perf">
                 <div class="oa-dev">
                   <h4>Victus by HP Gaming Laptop 16-r0xxx</h4>
@@ -188,25 +185,25 @@
                   <dt>RAM</dt><dd>16 GB DDR5</dd>
                 </div>
                 <div class="oa-top">
-                  <div><div class="oa-h">Performance</div><div class="oa-sub">Manage BIOS profiles and fan curves directly over hp-wmi.</div></div>
-                  <span class="oa-badge">Daemon Online</span>
+                  <div><div class="oa-h">Performance</div><div class="oa-sub">BIOS platform profiles and fan control via hp-wmi.</div></div>
+                  <span class="oa-badge">Daemon</span>
                 </div>
                 <div class="oa-label" style="margin-top:0">Performance modes</div>
                 <div class="oa-grid g3">
-                  <button class="oa-opt" type="button" data-g="mode" data-v="eco" style="--c:#3ddc97"><span class="d"></span><span><b>Eco</b><small>Battery saver</small></span></button>
-                  <button class="oa-opt on" type="button" data-g="mode" data-v="balanced" style="--c:#62b0ff"><span class="d"></span><span><b>Balanced</b><small>Recommended</small></span></button>
-                  <button class="oa-opt" type="button" data-g="mode" data-v="performance" style="--c:#ff4d6d"><span class="d"></span><span><b>Performance</b><small>Maximum power</small></span></button>
+                  <button class="oa-opt" type="button" data-g="mode" data-v="eco" style="--c:#3ddc97"><span class="d"></span><span><b>Eco</b><small>Low power</small></span></button>
+                  <button class="oa-opt on" type="button" data-g="mode" data-v="balanced" style="--c:#62b0ff"><span class="d"></span><span><b>Balanced</b><small>Default</small></span></button>
+                  <button class="oa-opt" type="button" data-g="mode" data-v="performance" style="--c:#ff4d6d"><span class="d"></span><span><b>Performance</b><small>High power</small></span></button>
                 </div>
                 <div class="oa-label">Fan modes</div>
                 <div class="oa-grid g4">
-                  <button class="oa-opt on" type="button" data-g="fan" data-v="auto" style="--c:#62b0ff"><span class="d"></span><span><b>Auto</b><small>Smart cooling</small></span></button>
-                  <button class="oa-opt" type="button" data-g="fan" data-v="max" style="--c:#ff4d6d"><span class="d"></span><span><b>Max</b><small>Full speed</small></span></button>
-                  <button class="oa-opt" type="button" data-g="fan" data-v="custom" style="--c:#b57bff"><span class="d"></span><span><b>Custom</b><small>Fixed / Curve</small></span></button>
+                  <button class="oa-opt on" type="button" data-g="fan" data-v="auto" style="--c:#62b0ff"><span class="d"></span><span><b>Auto</b><small>Curve</small></span></button>
+                  <button class="oa-opt" type="button" data-g="fan" data-v="max" style="--c:#ff4d6d"><span class="d"></span><span><b>Max</b><small>Full RPM</small></span></button>
+                  <button class="oa-opt" type="button" data-g="fan" data-v="custom" style="--c:#b57bff"><span class="d"></span><span><b>Custom</b><small>Manual</small></span></button>
                   <button class="oa-opt" type="button" data-g="fan" data-v="quiet" style="--c:#3ddc97"><span class="d"></span><span><b>Quiet</b><small>Low RPM</small></span></button>
                 </div>
                 <div class="oa-list" id="customRow" hidden>
                   <div class="oa-row">
-                    <div><b>Custom fan speed</b><small>Drag to set a fixed target speed</small></div>
+                    <div><b>Custom fan speed</b><small>Fixed target speed</small></div>
                     <div class="oa-ctl"><input class="oa-range" type="range" min="1500" max="6000" step="100" value="3500" data-s="custom"><output data-o="custom"></output></div>
                   </div>
                 </div>
@@ -237,60 +234,55 @@
                 </div>
               </section>
 
-              <!-- ADVANCED POWER TAB -->
               <section class="oa-page" data-page="power">
                 <div class="oa-h">Advanced Power</div>
-                <div class="oa-sub">Adjust Intel RAPL / Ryzen SMU power limits and thermal ceilings.</div>
+                <div class="oa-sub">Intel RAPL / Ryzen SMU power limits and TCC offset.</div>
                 <div class="oa-label" style="margin-top:0">Power limits (Intel RAPL / MSR)</div>
                 <div class="oa-list">
                   <div class="oa-row">
-                    <div><b>PL1 &mdash; Long Duration Power Limit</b><small>Base TDP: 45W | Configurable: 25W - 75W</small></div>
+                    <div><b>PL1 &mdash; Long Duration Power Limit</b><small>Base: 45W | Range: 25W - 75W</small></div>
                     <div class="oa-ctl"><input class="oa-range" type="range" min="25" max="75" value="45" data-s="pl1"><output data-o="pl1"></output></div>
                   </div>
                   <div class="oa-row">
-                    <div><b>PL2 &mdash; Short Duration Turbo Limit</b><small>Base Turbo: 95W | Configurable: 45W - 115W</small></div>
+                    <div><b>PL2 &mdash; Short Duration Turbo Limit</b><small>Base: 95W | Range: 45W - 115W</small></div>
                     <div class="oa-ctl"><input class="oa-range" type="range" min="45" max="115" value="56" data-s="pl2"><output data-o="pl2"></output></div>
                   </div>
                   <div class="oa-row">
-                    <div><b>TCC Offset (Max CPU Temperature)</b><small>Target peak temperature: 100&deg;C - TCC Offset</small></div>
+                    <div><b>TCC Offset</b><small>Peak CPU temp: 100&deg;C - offset</small></div>
                     <div class="oa-ctl"><input class="oa-range" type="range" min="0" max="30" value="0" data-s="tcc"><output data-o="tcc" style="min-width:140px"></output></div>
                   </div>
                 </div>
                 <div class="oa-actions">
-                  <button class="oa-btn" type="button" id="pwReset">Reset to Defaults</button>
-                  <button class="oa-btn p" type="button" id="pwApply">Apply &amp; Save</button>
+                  <button class="oa-btn" type="button" id="pwReset">Reset</button>
+                  <button class="oa-btn p" type="button" id="pwApply">Apply</button>
                 </div>
               </section>
 
-              <!-- GRAPHICS TAB -->
               <section class="oa-page" data-page="gpu">
                 <div class="oa-h">Graphics Switcher</div>
-                <div class="oa-sub">Select firmware MUX routing mode. Changes apply on next reboot.</div>
+                <div class="oa-sub">Firmware MUX mode (takes effect after reboot).</div>
                 <div class="oa-grid g3">
-                  <button class="oa-opt tall on" type="button" data-g="gpu" data-v="hybrid" style="--c:#62b0ff"><span class="hd"><span class="d"></span><span><b>Hybrid</b><small>Auto Switch</small></span></span><p>Uses integrated GPU for daily work and discrete GPU for demanding workloads.</p></button>
-                  <button class="oa-opt tall" type="button" data-g="gpu" data-v="discrete" style="--c:#ff4d6d"><span class="hd"><span class="d"></span><span><b>Discrete</b><small>Direct dGPU</small></span></span><p>Routes the internal display directly to the NVIDIA GPU for lowest latency.</p></button>
-                  <button class="oa-opt tall" type="button" data-g="gpu" data-v="advanced" style="--c:#b57bff"><span class="hd"><span class="d"></span><span><b>Advanced</b><small>Dynamic MUX</small></span></span><p>Dynamic Optimus display switching on supported firmware.</p></button>
+                  <button class="oa-opt tall on" type="button" data-g="gpu" data-v="hybrid" style="--c:#62b0ff"><span class="hd"><span class="d"></span><span><b>Hybrid</b><small>MSHybrid</small></span></span><p>iGPU drives the internal display; dGPU wakes on demand.</p></button>
+                  <button class="oa-opt tall" type="button" data-g="gpu" data-v="discrete" style="--c:#ff4d6d"><span class="hd"><span class="d"></span><span><b>Discrete</b><small>Direct dGPU</small></span></span><p>Routes eDP-1 directly to the NVIDIA GPU.</p></button>
+                  <button class="oa-opt tall" type="button" data-g="gpu" data-v="advanced" style="--c:#b57bff"><span class="hd"><span class="d"></span><span><b>Advanced</b><small>Dynamic MUX</small></span></span><p>Dynamic Optimus switching on supported models.</p></button>
                 </div>
                 <div class="oa-list oa-info">
-                  <div class="oa-row"><div><small>Internal Panel (eDP-1) 1920x1080 @ 144Hz</small></div><div style="text-align:right"><span class="oa-pill" id="gpuRoute">eDP-1 &rarr; Intel Integrated Graphics (Hybrid)</span></div></div>
-                  <div class="oa-row"><div><b>Graphics Card Model</b><small>Discrete Graphics Unit (dGPU)</small></div><div style="text-align:right;color:var(--oa-mut)">NVIDIA GeForce RTX 4050 Laptop GPU &middot; 6 GB VRAM</div></div>
-                  <div class="oa-row"><div><b>Driver Version</b><small>NVIDIA Linux Graphics Driver</small></div><div style="text-align:right;color:var(--oa-mut)">570.124.04 (NVIDIA Open Kernel)</div></div>
+                  <div class="oa-row"><div><small>eDP-1 1920x1080 @ 144Hz</small></div><div style="text-align:right"><span class="oa-pill" id="gpuRoute">eDP-1 &rarr; Intel Integrated Graphics (Hybrid)</span></div></div>
+                  <div class="oa-row"><div><b>dGPU</b></div><div style="text-align:right;color:var(--oa-mut)">NVIDIA GeForce RTX 4050 Laptop GPU</div></div>
                 </div>
               </section>
 
-              <!-- RGB STUDIO TAB -->
               <section class="oa-page" data-page="rgb">
                 <div class="oa-h">RGB Studio</div>
-                <div class="oa-sub">Control 4-zone WMI keyboards, per-key HID LampArray boards, and chassis lightbars.</div>
+                <div class="oa-sub">4-zone WMI and per-key HID LampArray keyboard lighting.</div>
                 <div class="oa-list" style="margin-top:0">
-                  <div class="oa-row"><div><b>Keyboard Effect</b></div>
+                  <div class="oa-row"><div><b>Effect</b></div>
                     <select class="oa-select" id="rgbEffect"><option value="static">Static</option><option value="breathing">Breathing</option><option value="wave">Wave</option><option value="cycle" selected>Color Cycle</option></select>
                   </div>
-                  <div class="oa-row"><div><b>Effect Speed</b></div><div class="oa-ctl"><input class="oa-range" type="range" min="10" max="100" value="50" data-s="speed"><output data-o="speed"></output></div></div>
-                  <div class="oa-row"><div><b>Keyboard Brightness</b></div><div class="oa-ctl"><input class="oa-range" type="range" min="0" max="100" value="100" data-s="bright"><output data-o="bright"></output></div></div>
+                  <div class="oa-row"><div><b>Speed</b></div><div class="oa-ctl"><input class="oa-range" type="range" min="10" max="100" value="50" data-s="speed"><output data-o="speed"></output></div></div>
+                  <div class="oa-row"><div><b>Brightness</b></div><div class="oa-ctl"><input class="oa-range" type="range" min="0" max="100" value="100" data-s="bright"><output data-o="bright"></output></div></div>
                 </div>
-                <div class="oa-label">Per-key color map</div>
-                <div class="oa-sub" style="margin-bottom:8px">Pick a color, or click any key to paint it directly.</div>
+                <div class="oa-label">Per-key map</div>
                 <div class="oa-pal" id="rgbPal"></div>
                 <div class="oa-kb" id="rgbKb"></div>
               </section>
@@ -303,215 +295,58 @@
           </div>
           <div class="oa-toast" id="oaToast" role="status"></div>
         </div>
-        <p class="demo-hint" data-i18n="demo.hint">Bu bir simülasyondur — gerçek donanımınıza dokunmaz.</p>
+        <p class="demo-hint" data-i18n="demo.hint"></p>
       </div>
     </div>
   </section>
 
-  <!-- SUPPORTED DEVICES & HARDWARE CAPABILITIES -->
-  <section id="devices" class="sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="sec-head-copy">
-          <div class="sec-kicker" data-i18n="devices.badge">Desteklenen Ekosistem</div>
-          <h2 data-i18n="devices.title">Tüm OMEN ve Victus Cihazlarıyla Uyumlu</h2>
-          <p class="sec-desc" data-i18n="devices.desc">Dizüstü bilgisayarlardan yüksek performanslı masaüstü sistemlere kadar tüm HP oyuncu ailesinde kusursuz ACPI, WMI ve SMU donanım desteği.</p>
-        </div>
-      </div>
-
-      <div class="dev-matrix">
-        <article class="dev-item">
-          <div class="dev-thumb" data-zoom><img src="images/omen_laptop.png" alt="OMEN 16, 17 &amp; MAX 16" loading="lazy"></div>
-          <div class="dev-tag" data-i18n="devices.omen.tag">Amiral Gemisi Oyuncu</div>
-          <h3 data-i18n="devices.omen.title">OMEN 16 &amp; 17</h3>
-          <p data-i18n="devices.omen.desc">4 bölgeli &amp; tuş bazlı HID LampArray RGB, MUX switch ve üst düzey termal profiller.</p>
-        </article>
-
-        <article class="dev-item">
-          <div class="dev-thumb" data-zoom><img src="images/victus_laptop.png" alt="Victus 15 &amp; 16" loading="lazy"></div>
-          <div class="dev-tag" data-i18n="devices.victus.tag">Performans &amp; F/P</div>
-          <h3 data-i18n="devices.victus.title">Victus 15 &amp; 16</h3>
-          <p data-i18n="devices.victus.desc">Özel Victus fan denetimi, sessiz mod ve dengeli güç optimizasyonu.</p>
-        </article>
-
-        <article class="dev-item">
-          <div class="dev-thumb" data-zoom><img src="images/transcend14.png" alt="OMEN Transcend 14" loading="lazy"></div>
-          <div class="dev-tag" data-i18n="devices.transcend.tag">Ultra İnce &amp; OLED</div>
-          <h3 data-i18n="devices.transcend.title">OMEN Transcend 14</h3>
-          <p data-i18n="devices.transcend.desc">Hafif magnezyum kasa, OLED uyumu ve hibrit grafik desteği.</p>
-        </article>
-
-        <article class="dev-item">
-          <div class="dev-thumb" data-zoom><img src="images/omen35l.png" alt="OMEN 35L &amp; 45L" loading="lazy"></div>
-          <div class="dev-tag" data-i18n="devices.desktop.tag">Masaüstü Canavarları</div>
-          <h3 data-i18n="devices.desktop.title">OMEN 35L &amp; 45L</h3>
-          <p data-i18n="devices.desktop.desc">Kasa ARGB aydınlatma, sıvı soğutma fan eğrileri ve BIOS kısıtsız TDP.</p>
-        </article>
-      </div>
-
-      <div class="cap-matrix">
-        <div class="cap-cell">
-          <div class="cap-num">01 / THERMAL</div>
-          <h3 data-i18n="cap.1.title">Akıllı Fan &amp; Termal Denetim</h3>
-          <p data-i18n="cap.1.desc">Auto, Max ve devir bazlı özel RPM kontrolü ile serin ve sessiz çalışma.</p>
-        </div>
-        <div class="cap-cell">
-          <div class="cap-num">02 / POWER</div>
-          <h3 data-i18n="cap.2.title">Intel RAPL &amp; TDP Limitleri</h3>
-          <p data-i18n="cap.2.desc">PL1 ve PL2 güç sınırlarını BIOS kısıtlamalarına takılmadan özgürce belirleyin.</p>
-        </div>
-        <div class="cap-cell">
-          <div class="cap-num">03 / GRAPHICS</div>
-          <h3 data-i18n="cap.3.title">GPU &amp; Dinamik MUX Switch</h3>
-          <p data-i18n="cap.3.desc">Harici GPU doğrudan ekran bağlantısı veya pil tasarrufu için Hibrit grafik geçişi.</p>
-        </div>
-        <div class="cap-cell">
-          <div class="cap-num">04 / LIGHTING</div>
-          <h3 data-i18n="cap.4.title">RGB Stüdyo &amp; Klavye</h3>
-          <p data-i18n="cap.4.desc">Bölgesel ve tuş bazlı klavye ile kasa LED'lerini özel renk ve efektlerle kişiselleştirin.</p>
-        </div>
-        <div class="cap-cell">
-          <div class="cap-num">05 / SILICON</div>
-          <h3 data-i18n="cap.5.title">Ryzen Undervolt &amp; TCC</h3>
-          <p data-i18n="cap.5.desc">Isınma ve throttling sorunlarına son veren voltaj düşürme ve tepe sıcaklık tavanı belirleme.</p>
-        </div>
-        <div class="cap-cell">
-          <div class="cap-num">06 / DIAGNOSTICS</div>
-          <h3 data-i18n="cap.6.title">Quick HUD &amp; Sıfır Kaynak</h3>
-          <p data-i18n="cap.6.desc">Rust &amp; GTK4 ile ~0 CPU/RAM tüketimi; Shift+F2 kısayolu ile oyun içi hızlı durum katmanı.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INTERFACE MODULES GALLERY -->
-  <section id="features" class="sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="sec-head-copy">
-          <div class="sec-kicker" data-i18n="nav.features">Arayüz</div>
-          <h2 data-i18n="feat.title">Yazılım Modülleri</h2>
-          <p class="sec-desc" data-i18n="feat.desc">Donanımınızın potansiyelini son damlasına kadar kullanın. Her şey tek bir şık arayüzde.</p>
-        </div>
-      </div>
-
-      <div class="gallery-grid">
-        <article class="shot-card">
-          <div class="shot-img" data-zoom><img src="images/profilepage.png" alt="Uygulamalara Özel Profiller" loading="lazy"></div>
-          <div class="shot-body">
-            <h3 data-i18n="feat.1.title">Uygulamalara Özel Profiller</h3>
-            <p data-i18n="feat.1.desc">Favori oyunlarınız ve uygulamalarınız için özel güç ve fan profilleri atayın.</p>
-          </div>
-        </article>
-
-        <article class="shot-card">
-          <div class="shot-img" data-zoom><img src="images/keyboardpage.png" alt="RGB Stüdyosu" loading="lazy"></div>
-          <div class="shot-body">
-            <h3 data-i18n="feat.2.title">RGB Stüdyosu</h3>
-            <p data-i18n="feat.2.desc">Klavye aydınlatmanızı bölgesel veya tuş bazlı kişiselleştirin.</p>
-          </div>
-        </article>
-
-        <article class="shot-card">
-          <div class="shot-img" data-zoom><img src="images/undervoltpage.png" alt="Ryzen Undervolt" loading="lazy"></div>
-          <div class="shot-body">
-            <h3 data-i18n="feat.3.title">Ryzen Undervolt</h3>
-            <p data-i18n="feat.3.desc">Isınma sorunlarına son. İşlemcinizin voltaj limitlerini belirleyin.</p>
-          </div>
-        </article>
-
-        <article class="shot-card">
-          <div class="shot-img" data-zoom><img src="images/muxpage.png" alt="MUX Switch" loading="lazy"></div>
-          <div class="shot-body">
-            <h3 data-i18n="feat.4.title">MUX Switch</h3>
-            <p data-i18n="feat.4.desc">Doğrudan GPU bağlantısı veya hibrit mod arasında geçiş yapın.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ALTERNATIVES -->
-  <section id="alternatives" class="sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="sec-head-copy">
-          <div class="sec-kicker" data-i18n="nav.alternatives">Alternatifler</div>
-          <h2 data-i18n="alt.title">Alternatif Çözümler</h2>
-          <p class="sec-desc" data-i18n="alt.desc">Windows kullanıcıları veya farklı yaklaşımlar arayanlar için topluluğun geliştirdiği diğer değerli açık kaynak projeler.</p>
-        </div>
-      </div>
-
-      <div class="gallery-grid">
-        <article class="shot-card">
-          <div class="shot-img contain" data-zoom><img src="images/ohman.png" alt="Ohman (Windows)" loading="lazy"></div>
-          <div class="shot-body">
-            <h3 data-i18n="alt.ohman.title">Ohman (Windows)</h3>
-            <p data-i18n="alt.ohman.desc">Windows için reklamsız ve hafif OMEN Gaming Hub alternatifi.</p>
-            <a href="https://github.com/P4R1H/ohman" target="_blank" rel="noopener" class="btn btn-sm" data-i18n="install.github_btn">GitHub'da İncele</a>
-          </div>
-        </article>
-
-        <article class="shot-card">
-          <div class="shot-img contain" data-zoom><img src="images/omencore.png" alt="OmenCore" loading="lazy"></div>
-          <div class="shot-body">
-            <h3 data-i18n="alt.omencore.title">OmenCore</h3>
-            <p data-i18n="alt.omencore.desc">Özel fan eğrileri, BIOS güç modları, termal profiller ve donanım telemetrisi sunan gelişmiş açık kaynaklı OMEN yönetim aracı.</p>
-            <a href="https://github.com/theantipopau/omencore" target="_blank" rel="noopener" class="btn btn-sm" data-i18n="install.github_btn">GitHub'da İncele</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- INSTALL -->
+  <!-- INSTALL & WINDOWS ALTERNATIVES -->
   <section id="install" class="sec">
     <div class="wrap">
-      <div class="install-panel">
-        <div class="install-split">
-          <div>
-            <div class="sec-kicker" data-i18n="nav.download">İndir</div>
-            <h2 data-i18n="install.linux">Linux (OMEN Space)</h2>
-            <p class="sec-desc" style="margin-bottom:20px" data-i18n="install.omenspace.desc">Linux üzerinde geliştirilmiş tam kapsamlı, modern ve inanılmaz hızlı donanım kontrol merkezi.</p>
+      <h2 data-i18n="sec.install">Kurulum</h2>
+      <p class="sec-desc" data-i18n="install.desc"></p>
 
-            <div class="cmd-box">
-              <code><span class="prompt">$</span>curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash</code>
-              <button class="copy-btn" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash">Copy</button>
-            </div>
-
-            <div class="hero-actions" style="margin-bottom:0">
-              <a href="install.html" class="btn btn-primary" data-i18n="nav.download">İndir</a>
-              <a href="https://github.com/yunusemreyl/omen-space/releases" target="_blank" rel="noopener" class="btn">Releases (v2.3.0) ↗</a>
-              <a href="https://github.com/yunusemreyl/omen-space/issues" target="_blank" rel="noopener" class="btn">Issues ↗</a>
-            </div>
+      <div class="cmd-group">
+        <div>
+          <div class="cmd-lbl" data-i18n="install.stable">Kararlı sürüm (v2.3.0)</div>
+          <div class="cmd-box" style="margin-bottom:0">
+            <code><span class="prompt">$</span>curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash</code>
+            <button class="copy-btn" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash">Copy</button>
           </div>
-
-          <ul class="distro-list">
-            <li><strong>Ubuntu / Debian / Mint / Pop!_OS</strong><span>apt + DKMS</span></li>
-            <li><strong>Fedora / Nobara / RHEL</strong><span>dnf + MOK .ko.xz</span></li>
-            <li><strong>Arch / CachyOS / EndeavourOS</strong><span>pacman + .ko.zst</span></li>
-            <li><strong>Artix / Non-systemd</strong><span>OpenRC native</span></li>
-            <li><strong>openSUSE / NixOS</strong><span>zypper / flake.nix</span></li>
-          </ul>
+        </div>
+        <div>
+          <div class="cmd-lbl" data-i18n="install.canary">Geliştirme dalı (main / --canary)</div>
+          <div class="cmd-box" style="margin-bottom:0">
+            <code><span class="prompt">$</span>curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash -s -- --canary</code>
+            <button class="copy-btn" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/yunusemreyl/omen-space/main/install.sh | bash -s -- --canary">Copy</button>
+          </div>
         </div>
       </div>
+
+      <h2 style="margin-top:36px" data-i18n="sec.windows">Windows kullanıyorsanız</h2>
+      <p class="sec-desc" style="margin-bottom:14px" data-i18n="win.desc"></p>
+      <ul class="alt-list">
+        <li>
+          <div><strong>Ohman</strong><span data-i18n="win.ohman"></span></div>
+          <a href="https://github.com/P4R1H/ohman" target="_blank" rel="noopener">github.com/P4R1H/ohman</a>
+        </li>
+        <li>
+          <div><strong>OmenCore</strong><span data-i18n="win.omencore"></span></div>
+          <a href="https://github.com/theantipopau/omencore" target="_blank" rel="noopener">github.com/theantipopau/omencore</a>
+        </li>
+      </ul>
     </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="wrap foot-in">
-    <div class="foot-brand">
-      <img src="images/omenspace.png" alt="OMEN Space" width="20" height="20">
-      <span>OMEN Space</span>
-    </div>
-    <span data-i18n="footer.copy">&copy; 2026 OMEN Space. GPL-3.0 Lisanslıdır.</span>
+    <span data-i18n="footer.copy">GPL-3.0 Lisansı &middot; OMEN Space</span>
     <div class="foot-links">
       <a href="https://yunusemreyl.github.io" target="_blank" rel="noopener">Yunus Emre Yılmaz</a>
-      <span>&middot;</span>
       <a href="https://github.com/yunusemreyl/omen-space" target="_blank" rel="noopener">GitHub</a>
-      <span>&middot;</span>
-      <a href="install.html" data-i18n="nav.download">İndir</a>
+      <a href="https://github.com/yunusemreyl/omen-space/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="install.html" data-i18n="nav.install">Kurulum</a>
     </div>
   </div>
 </footer>
